@@ -12,6 +12,7 @@ import ManageProducts from './pages/admin/ManageProducts'
 import UpdateProduct from './pages/admin/UpdateProduct'
 import CreateProduct from './pages/admin/CreateProduct'
 import Root from './pages/Root'
+import Product from './pages/Product'
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Products/>
+      },
+      {
+        path: "/products/:id",
+        element: <Product/>
       },
       {
         path: "/admin/manage-products",

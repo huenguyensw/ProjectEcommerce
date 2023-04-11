@@ -1,32 +1,35 @@
-import React, {useState,useEffect}from 'react'
+import React, { useState, useEffect } from 'react'
 
-const usefetchOneRecord = ({URL}) => {
+const usefetchOneRecord = (URL) => {
     const [data, setData] = useState({})
     const [isError, setIsError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
-    const fetchData = () =>{
+    const fetchData = () => {
         fetch(URL)
-        .then((response)=>{
-            if(response.ok == false){
-                throw new Error ('HTTP Error' + response.status)
+            .then((response) => {
+                if (response.ok == false) {
+                    throw new Error('HTTP Error' + response.status)
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setIsLoading(false);
+                setData(data);
+                setIsError(null);
+            })
+            .catch((error) => {
+                setIsError(error.message);
+                setIsLoading(false);
             }
-            return response.json();
-        })
-        .then((data)=>{
-            setIsLoading(false)
-            setData(data);
-        })
-        .catch((error)=> {
-            setIsError(error.message);
-             console.log(error)})
+            )
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchData();
-    },[URL])
+    }, [URL])
 
-  return {data,isLoading,isError}
+    return { data, isLoading, isError }
 }
 
 export default usefetchOneRecord
