@@ -9,7 +9,9 @@ const ProductForm = ({product}) => {
       <p>{product.price} kr</p>
       <p>{product.quantity>0?'In stock':'Out stock'}</p>
       <Link to={"/products/"+`${product._id}`}>Read more...</Link>
+      <br/>
       <input type='text'></input>
+      <br/>
       <button>Add to cart</button>
       
     </div>
