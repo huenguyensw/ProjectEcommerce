@@ -13,7 +13,7 @@ const ManageProducts = () => {
   return (
     <div>
       <section className='create-Product-Btn'>
-        <a>Create new product</a>
+        <Link to='/admin/create-product'>Create new product</Link>
       </section>
       <table className='data'>
         <thead>
@@ -32,7 +32,7 @@ const ManageProducts = () => {
               <td>{product.price}</td>
               <td>{product.quantity}</td>
               <td>
-                <Link to={"/products/" + `${product._id}`}>Edit</Link>| <a href='#'>Delelte</a>
+                <Link to={"/products/" + `${product._id}`}>Edit</Link>| <a href='#'>Delete</a>
               </td>
             </tr>
           )})}
