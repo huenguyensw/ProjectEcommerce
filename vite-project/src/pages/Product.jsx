@@ -1,6 +1,7 @@
 import React from 'react'
 import usefetchOneRecord from '../components/usefetchOneRecord'
 import { useParams} from 'react-router-dom'
+import ProductItem from '../components/ProductItem';
 
 const Product = () => {
   const Params = useParams();
@@ -8,7 +9,7 @@ const Product = () => {
   const {data: product, isLoading, isError} = usefetchOneRecord('https://db.up.railway.app/products/'+ Params.id)
   return (
     <div>
-      
+      {isLoading?<h1>Loading...</h1>:isError?<h1>{isError}</h1>:<ProductItem key={product._id} product={product} np/>}
     </div>
   )
 }
