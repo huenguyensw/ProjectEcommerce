@@ -97,6 +97,7 @@ tr,
 th {
   border: 1.5px solid gray;
   padding: 5px;
+  text-align: center;
 }
 
 .data button {
@@ -105,6 +106,10 @@ th {
 }
 .create-Product-Btn{
   display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 960px;
+  margin: 30px auto;
 }
 
 .add-to-cart-button:hover {
