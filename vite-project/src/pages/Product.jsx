@@ -1,5 +1,5 @@
 import React from 'react'
-import usefetchOneRecord from '../components/usefetchOneRecord'
+import usefetchOneRecord from './usefetchOneRecord'
 import { useParams} from 'react-router-dom'
 
 const Product = () => {
