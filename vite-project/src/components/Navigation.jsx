@@ -6,6 +6,8 @@ const Navigation = () => {
     <nav className='nav'>
       <Link to="/">Products</Link>
       <Link to="/admin/manage-products">Admin</Link>
+      <Link to="/">UpdateProduct</Link>
+
     </nav>
   )
 }
