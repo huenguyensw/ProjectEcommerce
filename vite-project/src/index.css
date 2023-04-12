@@ -86,6 +86,27 @@
   text-decoration: none;
 }
 
+.data {
+  border-collapse: collapse;
+  width: 960px;
+  margin: 30px auto;
+}
+
+.data td,
+tr,
+th {
+  border: 1.5px solid gray;
+  padding: 5px;
+}
+
+.data button {
+  border: none;
+  cursor: pointer;
+}
+.create-Product-Btn{
+  display: flex;
+}
+
 .add-to-cart-button:hover {
   background-color: rgb(255, 152, 169);
 }
