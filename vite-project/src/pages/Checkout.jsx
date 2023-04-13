@@ -49,8 +49,9 @@ const Checkout = () => {
             <label>
                 Comment
                 <br/>
-                <textarea ></textarea>
+                <textarea></textarea>
             </label>
+            <button>Proceed to payment</button>
         </section>
       
     </div>
