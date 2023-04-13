@@ -1,36 +1,21 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-import { useParams } from 'react-router';
+
 
 const CreateProduct = () => {
   const [file, setFile] = useState({})
   const [inputs, setInputs] = useState({})
-
+  const URL = 'https://db.up.railway.app/products'
 
 
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value })
   }
-  //   const handleSubmit = (e) =>{
-  //     console.log(inputs);
-  //     console.log(fileInput.current.files[0].name)
-  //     e.preventDefault();
-  //     fetch('http://localhost:3000/products',{
-  //       method: 'POST',
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //         title: inputs.title,
-  //         description: inputs.description,
-  //         price: inputs.price,
-  //         quantity: inputs.quantity,
-  //         productImage: fileInput.current.files[0].name,
-  //     })
-  // }).then(()=> console.log('test'))
-  // .catch(error=>console.log(error))
 
-  // }
+  const handleFiles = (e) => {
+    setFile(e.target.files[0])
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     var formData = new FormData();
@@ -46,14 +31,12 @@ const CreateProduct = () => {
       }
     }
 
-    const res = await axios.post("http://localhost:3000/products", formData, config);
+    const res = await axios.post(URL, formData, config);
     console.log(res)
 
   }
 
-  const handleFiles = (e) => {
-    setFile(e.target.files[0])
-  }
+  
   return (
     <form className='product-form' onSubmit={handleSubmit}>
       <label>
