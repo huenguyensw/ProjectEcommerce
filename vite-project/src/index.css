@@ -172,3 +172,37 @@ th {
   flex-direction: column;
   row-gap: 20px;
 }
+.product-form{
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  padding: 20px 30px;
+  align-items: center;
+  flex-wrap: wrap;
+  line-height: 1rem;
+  width: 850px;
+  margin: 10px auto;
+  background-color: antiquewhite;
+  border-radius: 5px;
+}
+.product-form input{
+  width: 98%;
+  height: 1.3rem;
+  border-radius: 2px;
+  border: 1.2px solid;
+}
+.product-form textarea{
+  width: 100%;
+}
+.product-form button{
+  width: 100%;
+  height: 1.8rem;
+  border-radius: 6px;
+  border: 1.5px solid;
+  
+}
+.product-form-info{
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
