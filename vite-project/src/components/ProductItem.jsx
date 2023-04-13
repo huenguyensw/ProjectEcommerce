@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 const ProductItem = ({product}) => {
+    const endpoint = encodeURI(product.image);
     const [quantity, setQuantity] = useState(1);
 
     const increment = () => {
@@ -13,7 +14,7 @@ const ProductItem = ({product}) => {
 
   return (
     <div className='product-single-view'>
-      <img src={product.image} width='500' height='500' />
+      <img src={`${URL}/uploads/${endpoint}`} width='500px' height='500px'></img>
       <div class="product-single-info"><h1>{product.title}</h1>
       <h2>{product.price} kr</h2>
       <p class={product.quantity>0?'':'out-of-stock'}>{product.quantity>0?'In stock':'Out of stock'}</p>
