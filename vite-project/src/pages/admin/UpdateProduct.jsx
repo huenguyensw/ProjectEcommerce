@@ -42,7 +42,7 @@ const UpdateProduct = () => {
     e.preventDefault();
     try {
       await fetch("https://db.up.railway.app/products/" + id, {
-        method: "PATCH",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -106,7 +106,7 @@ const UpdateProduct = () => {
         <label>
           Quantity:
           <br/>
-          <input type='text' name='quantity' value={inputs.quantity} onChange={handleChange}></input>
+          <input type='text' name='quantity' value={product.quantity} onChange={handleChange}></input>
         </label>
         <br />
         {/* Add a link to navigate back to the manage-products page */}
