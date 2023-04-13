@@ -3,18 +3,11 @@ import Cart from '../components/Cart'
 
 const Checkout = () => {
   return (
-    <div>
-<<<<<<< HEAD
+    <div className='checkout'>
         <section className='orders'>
             <h3>Products</h3>
             <hr/>
-            <Cart/>
-=======
-        <Cart/>
-        <section className='orders'>
-            <h3>Products</h3>
-            <hr/>
->>>>>>> e6fab6eaaaacb152d5e133b759a8d78a3d0e181f
+            {/* <Cart/> */}
         </section>
         <section className='news'>
             <h3>Newsletter</h3>
