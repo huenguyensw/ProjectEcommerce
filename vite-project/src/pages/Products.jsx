@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from '../components/Header'
-import usefetchAllRecords from '../components/usefetchAllRecords'
+
+import usefetchAllRecords from './usefetchAllRecords'
 import ProductForm from '../components/ProductForm'
-import Footer from '../components/Footer'
+
 
 const Products = () => {
   const {data: products,isLoading,isError } = usefetchAllRecords('https://db.up.railway.app/products')

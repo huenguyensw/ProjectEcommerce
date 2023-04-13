@@ -2,9 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const ProductForm = ({product}) => {
+  const endpoint = encodeURI(product.image)
+ console.log()
   return (
     <div className='product-area'>
-      <img src={product.image} width='250px' height='250px'></img>
+      <img src={`http://localhost:3000/uploads/${endpoint}`} width='250px' height='250px'></img>
       <h3>{product.title}</h3>
       <p>{product.price} kr</p>
       <p>{product.quantity>0?'In stock':'Out stock'}</p>

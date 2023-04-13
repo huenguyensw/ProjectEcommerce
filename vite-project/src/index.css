@@ -33,6 +33,114 @@
 }
 .body{
   background-color: pink;
+  font-family: arial;
+  min-height: 100vh;
 }
 
+.product-single-view {
+  display: flex; 
+}
 
+.product-single-info {
+  padding: 50px;
+}
+
+.out-of-stock {
+  color: red;
+}
+
+#quantity-input {
+  width: 60px;
+  text-align: center;
+  height: 60px;
+  border: 1px solid rgb(255, 106, 131);
+  border-radius: 5px 0px 0px 5px;
+}
+
+.quantity-button {
+  width: 60px;
+  height: 64px;
+  border: none;
+  color: white;
+  background-color: rgb(255, 106, 131);
+  text-decoration: none;
+}
+
+.quantity-button:hover {
+  background-color: rgb(255, 152, 169);
+}
+
+.decrement-button {
+  border-radius: 0px 5px 5px 0px;
+}
+
+.add-to-cart-button {
+  width: 186px;
+  height: 40px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: rgb(255, 106, 131);
+  text-decoration: none;
+}
+
+.data {
+  border-collapse: collapse;
+  width: 960px;
+  margin: 30px auto;
+}
+
+.data td,
+tr,
+th {
+  border: 1.5px solid gray;
+  padding: 5px;
+  text-align: center;
+}
+
+.data button {
+  border: none;
+  cursor: pointer;
+}
+.create-Product-Btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 960px;
+  margin: 30px auto;
+}
+
+.add-to-cart-button:hover {
+  background-color: rgb(255, 152, 169);
+}
+
+#favourite {
+  height: 40px;
+  width: 40px;
+  font-size: 15pt;
+  font-family: arial;
+  border-radius: 50%;
+  border: 1px solid rgb(255, 106, 131);
+  color: rgb(255, 106, 131);
+  background-color: white;
+}
+
+#favourite:hover {
+  border: 1px solid rgb(255, 152, 169);
+  color: rgb(255, 152, 169);
+}
+.product-form{
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  padding: 30px 30px 50px 30px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.product-form-info{
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
