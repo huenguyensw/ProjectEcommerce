@@ -229,3 +229,50 @@ th {
   align-items: center;
   align-content: center;
 }
+.checkout{
+  display: grid;
+  grid-template-columns: 3.5fr 1.3fr;
+  grid-template-areas: 
+  'orders news'
+  'shipping news';
+  line-height: 1rem;
+  margin: 40px 50px;
+}
+.orders{
+  grid-area: orders;
+}
+.news{
+  grid-area: news;
+  padding-left: 50px;
+  font-size: 14px;
+}
+.news input{
+  height: 25px;
+  width: 97%;
+  margin-top: 8px;
+  border-radius:4px;
+  border: 1.2px solid;
+}
+.shipping{
+  grid-area: shipping;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-areas: 'first last'
+  'email password'
+  'country country'
+  'comment comment'; */
+}
+.shipping input{
+  grid-column: 1fr 2fr;
+}
+.checkout hr{
+  height: 1.4px;
+}
+.subscribe{
+  background-color: orange;
+  border: 2px solid orange;
+  border-radius: 4px;
+  margin-top: 10px;
+  width: 100%;
+  height: 28px;
+}

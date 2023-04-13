@@ -13,6 +13,7 @@ import UpdateProduct from './pages/admin/UpdateProduct'
 import CreateProduct from './pages/admin/CreateProduct'
 import Root from './pages/Root'
 import Product from './pages/Product'
+import Checkout from './pages/Checkout'
 
 const router = createBrowserRouter([
   {
@@ -32,12 +33,16 @@ const router = createBrowserRouter([
         element: <ManageProducts/>
       },
       {
-        path: "/admin/update-product",
+        path: "/admin/update-product/:id",
         element: <UpdateProduct/>
       },
       {
         path: "/admin/create-product",
         element: <CreateProduct/>
+      },
+      {
+        path: "/checkout",
+        element: <Checkout/>
       },
 
     ]

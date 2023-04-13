@@ -24,12 +24,13 @@ const CreateProduct = () => {
     reader.onload = () =>{
       setImage(reader.result)
     };
-
+    console.log(reader)
     reader.onerror = error =>{
       console.log("Error:", error)
     }
 
   }
+  console.log(image)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
