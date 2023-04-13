@@ -8,6 +8,8 @@ const CreateProduct = () => {
   const [inputs, setInputs] = useState({})
   const URL = 'https://db.up.railway.app/products'
   const navigate = useNavigate();
+  
+  const  [image,setImage] = useState('');
 
 
   const handleChange = (e) => {
@@ -16,6 +18,17 @@ const CreateProduct = () => {
 
   const handleFiles = (e) => {
     setFile(e.target.files[0])
+    //render image
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () =>{
+      setImage(reader.result)
+    };
+
+    reader.onerror = error =>{
+      console.log("Error:", error)
+    }
+
   }
 
   const handleSubmit = async (e) => {
@@ -35,42 +48,47 @@ const CreateProduct = () => {
 
     const res = await axios.post(URL, formData, config);
 
-    
+
     navigate('/admin/manage-products')
     console.log(res)
   }
 
-  
+
   return (
     <form className='product-form' onSubmit={handleSubmit}>
-      <label>
-        Upload Image:
-        <input type="file" name='productImage' onChange={handleFiles} />
-      </label>
+      <section className='product-form-photo'>
+      {image==''||image==null?"":<img src={image} width={250} height={250} alt='product-image'></img>}
+      <br/>
+        <label>
+          Upload Image:
+          <br/>
+          <input type="file" name='productImage' onChange={handleFiles} required />
+        </label>
+      </section>
       <section className='product-form-info' >
         <label>
           Title:
-          <br/>
+          <br />
           <input type='text' name='title' value={inputs.title} onChange={handleChange} required></input>
         </label>
         <label>
           Description:
-          <br/>
-          <textarea name='description' value={inputs.description} onChange={handleChange} required></textarea>
+          <br />
+          <textarea name='description' rows={10} value={inputs.description} onChange={handleChange} required></textarea>
         </label>
         <label>
           Price:
-          <br/>
+          <br />
           <input type='text' name='price' value={inputs.price} onChange={handleChange} required></input>
         </label>
         <label>
           Quantity:
-          <br/>
+          <br />
           <input type='text' name='quantity' value={inputs.quantity} onChange={handleChange} required></input>
         </label>
         <button type="submit">Create</button>
       </section>
-      
+
     </form>
 
   )
