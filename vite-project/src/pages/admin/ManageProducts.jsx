@@ -30,7 +30,7 @@ const ManageProducts = () => {
             <tr key={product._id}>
               <td>{product.title}</td>
               <td>{product.price}</td>
-              <td>{product.quantity}</td>
+              <td class={product.quantity>0?'':'out-of-stock'}>{product.quantity}</td>
               <td>
                 <Link to={"/products/" + `${product._id}`}>Edit</Link>| <a href='#'>Delete</a>
               </td>
