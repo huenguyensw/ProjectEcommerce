@@ -32,7 +32,7 @@ const ManageProducts = () => {
               <td>{product.price}</td>
               <td>{product.quantity}</td>
               <td>
-                <Link to={"/products/" + `${product._id}`}>Edit</Link>| <a href='#'>Delete</a>
+                <Link to={"/admin/update-product/" + `${product._id}`}>Edit</Link>| <a href='#'>Delete</a>
               </td>
             </tr>
           )})}
