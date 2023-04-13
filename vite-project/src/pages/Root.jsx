@@ -1,14 +1,35 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { Outlet } from 'react-router-dom'
 
 const Root = () => {
+  const [cart, setCart] = useState(false)
+  const [insideCart, setInsideCart] = useState([])
+
+    const toggle = () => {
+        setCart(!cart)
+        console.log(cart)
+    }
+
+    const toggleWithTime = (addToCart) => {
+    setCart(!cart)
+
+    // setInsideCart([
+    //   ...insideCart,
+    // addToCart
+    // ])
+
+    setTimeout(() => {
+      setCart(false);
+    }, 1500);
+    }
+
   return (
     <div className='body'>
-      <Header/>
+      <Header cart={cart} toggle={toggle} insideCart={insideCart}/>
       <section>
-        <Outlet />
+        <Outlet context={[cart, toggle, toggleWithTime]}/>
       </section>
       <Footer/>
     </div>
