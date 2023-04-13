@@ -1,10 +1,11 @@
 import React from 'react'
+import { motion } from "framer-motion"
 
 const Cart = () => {
   return (
-    <div id="cart">
-      Here is the mini cart! 
-    </div>
+    <motion.div id="cart">
+      Here is the mini cart!
+    </motion.div>
   )
 }
 

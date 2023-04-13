@@ -40,10 +40,12 @@
 
 .product-single-view {
   display: flex; 
+  padding-left: 50px;
 }
 
 .product-single-info {
   padding: 50px;
+  padding-left: 150px;
 }
 
 .out-of-stock {
@@ -134,10 +136,18 @@ th {
 }
 
 #cart {
-  width: 100px;
-  height: 200px;
-  background-color: lightblue;
+  width: 200px;
+  height: 400px;
+  padding: 20px;
+  background-color: rgb(255, 238, 238);
+  border: 1px solid rgb(255, 106, 131);
+  border-radius: 10px;
+
+  position: fixed;
+  top: 100px;
+  right: 50px;
 }
+
 .product-form{
   display: flex;
   flex-direction: row;
