@@ -1,8 +1,10 @@
 import React from 'react'
+import Cart from '../components/Cart'
 
 const Checkout = () => {
   return (
-    <div className='checkout'>
+    <div>
+        <Cart/>
         <section className='orders'>
             <h3>Products</h3>
             <hr/>
