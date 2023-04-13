@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const ProductItem = ({product}) => {
+const ProductItem = ({product, URL}) => {
     const endpoint = encodeURI(product.image);
     const [quantity, setQuantity] = useState(1);
 
