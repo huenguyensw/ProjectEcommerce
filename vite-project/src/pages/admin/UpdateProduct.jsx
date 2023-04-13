@@ -1,54 +1,129 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
+const UpdateProduct = () => {
+  // Set up state for the product
+  const [product, setProduct] = useState({});
 
-function UpdateProduct() {
-  const [product, setProduct] = useState({
-    name: '',
-    price: '',
-    description: '',
-    quantity: '',
-  
-  });
+  // Get the navigate function from react-router
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    ('https://db.up.railway.app/products'+ params.id)
-      .then(() => {
-        // redirect to ManageProducts page
-        window.location.href = '/admin/manage-products';
-      })
-      .catch((error) => {
-        console.error(error);
+  // Get the id parameter from the URL using useParams from react-router
+  const { id } = useParams();
+
+  // Use useEffect to fetch the product on mount
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+
+  // Function to fetch the product by id from the API
+  const fetchProduct = async () => {
+    try {
+      const response = await fetch("https://db.up.railway.app/products/" + id);
+      const data = await response.json();
+      setProduct(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Function to handle changes in the form fields
+  const handleChange = (e) => {
+    e.preventDefault();
+    setProduct({
+      ...product,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await fetch("https://db.up.railway.app/products/" + id, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          image: product.image,
+          title: product.title,
+          price: product.price,
+          description: product.description,
+          quantityOfProducts: product.quantityOfProducts
+        }),
       });
+
+      // Navigate to the manage-products page after successful submission
+      navigate("/manage-products");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setProduct((prevProduct) => ({
-      ...prevProduct,
-      [name]: value,
-    }));
+  // Function to handle uploading files
+  const handleFiles = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setProduct({
+        ...product,
+        image: reader.result,
+      });
+    };
   };
 
+  // Render the component
   return (
-    <div>
-     
+    <div id="page">
+      <h1>Update Products</h1>
+
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" id="name" onChange={handleChange} value={product.name} />
-
-        <label htmlFor="price">Price</label>
-        <input type="number" name="price" id="price" onChange={handleChange} value={product.price} />
-
-        <label htmlFor="description">Description</label>
-        <textarea name="description" id="description" onChange={handleChange} value={product.description}></textarea>
-
-        <button type="submit">Create Product</button>
+        {/* Render the product fields in the input elements */}
+        <label>
+          Upload Image:
+          <input type="file" name='productImage' onChange={handleFiles} />
+        </label>
+        <br />
+        <label>
+          Title:
+          <br/>
+          <input type='text' name='title' value={product.title || ""} onChange={handleChange}></input>
+        </label>
+        <br />
+        <label>
+          Price:
+          <input type="text" name="price" value={product.price || ""} onChange={handleChange} />
+        </label>
+        <br />
+        <label>
+          Description:
+          <textarea name="description" value={product.description || ""} onChange={handleChange} />
+        </label>
+        <br />
+        <label>
+          Quantity:
+          <br/>
+          <input type='text' name='quantity' value={inputs.quantity} onChange={handleChange}></input>
+        </label>
+        <br />
+        {/* Add a link to navigate back to the manage-products page */}
+        <Link to="/manage-products">&#8592; Back</Link>
+        {/* Add a button to submit the form */}
+        <button>Update</button>
       </form>
-      <Link to="/admin/manage-products">Back to Manage Products</Link>
     </div>
   );
-}
+};
 
 export default UpdateProduct;
+
+
+
+
+
+
+
+
