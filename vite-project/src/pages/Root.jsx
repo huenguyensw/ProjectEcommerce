@@ -13,7 +13,6 @@ const Root = () => {
     }
 
     const toggleWithTime = (addToCart, quantity) => {
-      
     setCart(!cart)
     setQuantity(quantity)
     setInsideCart([
