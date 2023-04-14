@@ -10,19 +10,20 @@ const Products = () => {
   const [lineItems, setLineItems] = useOutletContext();
   const URL = 'https://db.up.railway.app'
   const { data: products, isLoading, isError } = usefetchAllRecords(`${URL}/products`)
+  
   const [totalPrice, setTotalPrice] = useState(0)
 
-  const handleClick = (product) => {
+  const handleClick = (product,amount) => {
     let isExist = lineItems.some(element => element.product._id == product._id)
     if (!isExist) {
-      setTotalPrice(totalPrice => totalPrice + product.price)
-      setLineItems([...lineItems, { product: product, quantity: 1 }])
+      setTotalPrice(totalPrice => totalPrice + product.price*amount)
+      setLineItems([...lineItems, { product: product, quantity: amount }])
     } else {
       setLineItems(lineItems.map((order) => {
         if (order.product._id === product._id) {
           console.log('exist')
-          setTotalPrice(totalPrice + order.product.price)
-          return { ...order, quantity: order.quantity + 1 }
+          setTotalPrice(totalPrice + order.product.price*amount)
+          return { ...order, quantity: order.quantity + amount }
         } else {
           return order;
         }
