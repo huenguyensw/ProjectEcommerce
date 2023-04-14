@@ -12,8 +12,9 @@ import ManageProducts from './pages/admin/ManageProducts'
 import UpdateProduct from './pages/admin/UpdateProduct'
 import CreateProduct from './pages/admin/CreateProduct'
 import Root from './pages/Root'
-import Product from './pages/Product'
+import Product from './components/Product'
 import Checkout from './pages/Checkout'
+import ProductItem from './pages/ProductItem'
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/products/:id",
-        element: <Product/>
+        element: <ProductItem/>
       },
       {
         path: "/admin/manage-products",
