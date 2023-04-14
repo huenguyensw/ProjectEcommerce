@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import axios from 'axios';
 
 const UpdateProduct = () => {
   // Set up state for the product
@@ -55,8 +56,10 @@ const UpdateProduct = () => {
         }),
       });
 
+      const res = await axios.post(URL, formData, config);
+
       // Navigate to the manage-products page after successful submission
-      navigate("/manage-products");
+      navigate("/admin/manage-products");
     } catch (error) {
       console.log(error);
     }
@@ -82,10 +85,10 @@ const UpdateProduct = () => {
 
       <form onSubmit={handleSubmit}>
         {/* Render the product fields in the input elements */}
-        <label>
+        {/* <label>
           Upload Image:
           <input type="file" name='productImage' onChange={handleFiles} />
-        </label>
+        </label> */}
         <br />
         <label>
           Title:
