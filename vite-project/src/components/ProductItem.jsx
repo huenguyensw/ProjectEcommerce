@@ -28,7 +28,7 @@ const ProductItem = ({product, URL, handleClick}) => {
       <button className='quantity-button' onClick={increment}>+</button>
       <button className='quantity-button decrement-button' onClick={decrement}>-</button>
       <br/>
-      <button onClick={()=>handleClick(product)} className="add-to-cart-button">Add to cart</button><button id="favourite">&#x2764;</button>
+      <button onClick={()=>handleClick(product,quantity)} className="add-to-cart-button">Add to cart</button><button id="favourite">&#x2764;</button>
       </div>
       </>
   )
