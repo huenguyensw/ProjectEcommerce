@@ -11,17 +11,20 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import { useOutletContext } from 'react-router-dom';
 
 
-const Header = ({itemCount}) => {
-    
-    return (
-        <div className='header'>
-            <Navigation />
-            <section>
-            <div>
-        <Badge color="secondary" badgeContent={itemCount}>
-          <ShoppingCartIcon />{" "}
-        </Badge>
-        {/* <ButtonGroup>
+
+
+const Header = ({ itemCount }) => {
+
+  return (
+    <div className='header'>
+      <Navigation />
+      <section>
+        <div>
+          <Badge color="secondary" badgeContent={itemCount}>
+            <ShoppingCartIcon />{" "}
+          </Badge>
+
+          {/* <ButtonGroup>
           <Button
             onClick={() => {
               setItemCount(Math.max(itemCount - 1, 0));
@@ -39,11 +42,11 @@ const Header = ({itemCount}) => {
             <AddIcon fontSize="small" />
           </Button>
         </ButtonGroup> */}
-      </div>
-                
-            </section>
         </div>
-    )
+
+      </section>
+    </div>
+  )
 }
 
 export default Header
