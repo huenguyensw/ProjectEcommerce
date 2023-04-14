@@ -1,27 +1,29 @@
-import React, {useState} from 'react'
-import { motion } from "framer-motion"
-import ProductItem from './ProductItem'
-
-const Cart = ({onMouseLeave, insideCart, setInsideCart, quantity}) => {
+import React, { useState } from 'react'
+import Button from "@material-ui/core/Button";
+import CloseIcon from '@material-ui/icons/Close';
+const Cart = ({ lineItems, totalPrice, handleRemoveItem }) => {
   const URL = 'https://db.up.railway.app'
-
-const cartItems = insideCart.map((item) => (
-<ProductItem key={item._id} product={item} URL={URL} />
-));
-
+  let total = 0;
+  
+  // //orders is an array of objects
+  // // each object include 2 properties: product and quantity
+  
   return (
-    <div onMouseLeave={onMouseLeave} id="cart">
-      <ul>
-      {insideCart.length 
-      ? insideCart.map(product => 
-        <li className="in-cart-list" key={product._id}>
-          <img src={`${URL}/uploads/${encodeURI(product.image)}`} width='40px' height='40px'></img><p>{product.title} <b>{product.price}</b> x {quantity}</p> 
-        </li>
-      )
-      : <li className="in-cart-list">Empty cart</li>
+    <ul className='ShoppingCart'>
+      {lineItems.map((order) =>
+        <li className='ShoppingItem'>
+          <img src={`${URL}/uploads/${order.product.image}`} width='20px' height='20px'></img>
+          <p>{order.product.title}</p>
+          <p>{order.quantity}x{order.product.price}</p>
+          <Button onClick={()=>handleRemoveItem(order)}>
+            <CloseIcon></CloseIcon>
+          </Button>
+        </li>)
       }
-      </ul>
-    </div>
+      <hr/>
+      <p>Total price: {totalPrice}</p>
+      {/* {console.log(order.product)} */}
+    </ul>
   )
 }
 

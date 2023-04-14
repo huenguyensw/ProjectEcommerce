@@ -12,10 +12,15 @@ const UpdateProduct = () => {
   // Get the id parameter from the URL using useParams from react-router
   const { id } = useParams();
 
+  const URL = 'https://db.up.railway.app'
+  const [src, setSrc] = useState({})
+
   // Use useEffect to fetch the product on mount
   useEffect(() => {
     fetchProduct();
   }, []);
+
+  console.log(product.image)
 
   // Function to fetch the product by id from the API
   const fetchProduct = async () => {
@@ -24,6 +29,7 @@ const UpdateProduct = () => {
       const data = await response.json();
       setProduct(data);
       console.log(data);
+      setSrc(`${URL}/uploads/${encodeURI(data.image)}`)
     } catch (error) {
       console.log(error);
     }
@@ -85,6 +91,7 @@ const UpdateProduct = () => {
 
       <form onSubmit={handleSubmit}>
         {/* Render the product fields in the input elements */}
+        {product.image==''||product.image==null?'':<img src={src} width={250} height={250}></img>}
         {/* <label>
           Upload Image:
           <input type="file" name='productImage' onChange={handleFiles} />
@@ -113,7 +120,7 @@ const UpdateProduct = () => {
         </label>
         <br />
         {/* Add a link to navigate back to the manage-products page */}
-        <Link to="/manage-products">&#8592; Back</Link>
+        <Link to="/admin/manage-products">&#8592; Back</Link>
         {/* Add a button to submit the form */}
         <button>Update</button>
       </form>

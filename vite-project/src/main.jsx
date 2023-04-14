@@ -14,7 +14,7 @@ import CreateProduct from './pages/admin/CreateProduct'
 import Root from './pages/Root'
 import Product from './pages/Product'
 import Checkout from './pages/Checkout'
-import ProductItem from './components/ProductItem'
+import Cart from './components/Cart'
 
 const router = createBrowserRouter([
   {
@@ -42,8 +42,8 @@ const router = createBrowserRouter([
         element: <CreateProduct/>
       },
       {
-        path: "/checkout",
-        element: <Checkout/>
+        path: "/cart",
+        element: <Cart/>
       },
 
     ]
