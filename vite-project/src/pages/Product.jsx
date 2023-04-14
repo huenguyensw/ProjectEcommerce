@@ -3,6 +3,7 @@ import usefetchOneRecord from './usefetchOneRecord'
 import { useParams} from 'react-router-dom'
 import ProductItem from '../components/ProductItem';
 import { useOutletContext } from "react-router-dom";
+import Cart from '../components/Cart'
 
 const Product = () => {
   const Params = useParams();
@@ -29,10 +30,15 @@ const Product = () => {
       }))
     }
   }
+  const handleRemoveItem = (item)=>{
+    setLineItems(lineItems => lineItems.filter((i)=>i.product._id != item.product._id));
+    setTotalPrice(totalPrice - item.product.price*item.quantity)
+  }
 
   return (
     <div>
       {isLoading?<h1>Loading...</h1>:isError?<h1>{isError}</h1>:<div className="single-product-view"><ProductItem key={product._id} product={product} URL={URL} handleClick={handleClick} /></div>}
+      {lineItems.length >0 && <Cart lineItems={lineItems} totalPrice={totalPrice} handleRemoveItem={handleRemoveItem}/>}
     </div>
   )
 }
