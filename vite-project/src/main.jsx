@@ -12,9 +12,9 @@ import ManageProducts from './pages/admin/ManageProducts'
 import UpdateProduct from './pages/admin/UpdateProduct'
 import CreateProduct from './pages/admin/CreateProduct'
 import Root from './pages/Root'
-import Product from './components/Product'
+import Product from './pages/Product'
 import Checkout from './pages/Checkout'
-import ProductItem from './pages/ProductItem'
+import ProductItem from './components/ProductItem'
 
 const router = createBrowserRouter([
   {

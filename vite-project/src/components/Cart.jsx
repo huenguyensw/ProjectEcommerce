@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import ProductItem from "../pages/ProductItem";
+import ProductItem from "./ProductItem";
 
 const Cart = ({ onMouseLeave, insideCart }) => {
 const URL = "https://db.up.railway.app";

@@ -1,7 +1,7 @@
 import React from 'react'
-import usefetchOneRecord from '../pages/usefetchOneRecord'
+import usefetchOneRecord from './usefetchOneRecord'
 import { useParams} from 'react-router-dom'
-import ProductItem from '../pages/ProductItem';
+import ProductItem from '../components/ProductItem';
 import { useOutletContext } from "react-router-dom";
 
 const Product = () => {
