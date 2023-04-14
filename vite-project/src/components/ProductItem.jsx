@@ -26,7 +26,7 @@ const ProductItem = ({product, URL, toggleWithTime}) => {
       <h2>{product.price} kr</h2>
       <p className={product.quantity>0?'':'out-of-stock'}>{product.quantity>0?'In stock':'Out of stock'}</p>
       <br/>
-      <input id='quantity-input' type='text' value={quantity} readOnly></input>
+      <input id='quantity-input' type='text' readOnly value={quantity}></input>
       <button className='quantity-button' onClick={increment}>+</button>
       <button className='quantity-button decrement-button' onClick={decrement}>-</button>
       <br/>
