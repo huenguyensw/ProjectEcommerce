@@ -5,14 +5,14 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import Cart from './Cart'
 
-const Header = ({cart, toggle, insideCart}) => {
+const Header = ({cart, toggle, insideCart, setInsideCart}) => {
 
     return (
         <div className='header'>
             <Navigation />
             <section>
                 <button className="cart-button" onClick={toggle} ><FontAwesomeIcon icon={faCartShopping}/></button>
-                {cart ? <Cart insideCart={insideCart} onMouseLeave={toggle}/>
+                {cart ? <Cart insideCart={insideCart} setInsideCart={setInsideCart} onMouseLeave={toggle} />
                 : ''
                 }
             </section>
