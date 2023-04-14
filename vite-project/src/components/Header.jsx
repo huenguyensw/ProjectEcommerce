@@ -6,16 +6,18 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 
 
-const Header = ({ itemCount }) => {
+const Header = ({ itemCount, handleToggle }) => {
 
   return (
     <div className='header'>
       <Navigation />
       <section>
         <div>
+          <button onClick={handleToggle}>
           <Badge color="secondary" badgeContent={itemCount}>
-            <ShoppingCartIcon />{" "}
+            <ShoppingCartIcon/>{" "}
           </Badge>
+          </button>
         </div>
 
       </section>

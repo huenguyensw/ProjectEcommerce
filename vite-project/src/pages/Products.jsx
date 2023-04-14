@@ -7,12 +7,13 @@ import Cart from '../components/Cart'
 
 
 const Products = () => {
-  const [lineItems, setLineItems, totalPrice,setTotalPrice] = useOutletContext();
+  const [lineItems, setLineItems, totalPrice,setTotalPrice,toggle,setToggle] = useOutletContext();
   const URL = 'https://db.up.railway.app'
   const { data: products, isLoading, isError } = usefetchAllRecords(`${URL}/products`)
   
 
   const handleClick = (product,amount) => {
+    setToggle(true);
     let isExist = lineItems.some(element => element.product._id == product._id)
     if (!isExist) {
       setTotalPrice(totalPrice => totalPrice + product.price*amount)
@@ -40,7 +41,8 @@ const Products = () => {
     {isLoading?<h1>Loading...</h1>:isError?<h1>{isError}</h1>:products.map((product)=><div className="product-area"><ProductItem key={product._id} product={product} URL={URL} handleClick={handleClick}/></div>)}
       {/* {isLoading ? <h1>Loading...</h1> : isError ? <h1>{isError}</h1> : products.map((product) => <ProductForm key={product._id} product={product} URL={URL} handleClick={handleClick} />)} */}
       {/* <button onClick={() => console.log(lineItems)}>show</button> */}
-      {lineItems.length >0 && <Cart lineItems={lineItems} totalPrice={totalPrice} handleRemoveItem={handleRemoveItem}/>}
+      {console.log(toggle)}
+      {(lineItems.length >0 && toggle === true) && <Cart lineItems={lineItems} totalPrice={totalPrice} handleRemoveItem={handleRemoveItem}/>}
     </div>
   )
 }

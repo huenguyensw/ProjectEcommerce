@@ -11,9 +11,10 @@ const Product = () => {
   const URL = 'https://db.up.railway.app'
   const {data: product, isLoading, isError} = usefetchOneRecord('https://db.up.railway.app/products/'+ Params.id)
   
-  const [lineItems, setLineItems, totalPrice,setTotalPrice] = useOutletContext();
+  const [lineItems, setLineItems, totalPrice,setTotalPrice,toggle,setToggle] = useOutletContext();
 
   const handleClick = (product,amount) => {
+    setToggle(true);
     let isExist = lineItems.some(element => element.product._id == product._id)
     if (!isExist) {
       setTotalPrice(totalPrice => totalPrice + product.price*amount)
@@ -38,7 +39,7 @@ const Product = () => {
   return (
     <div>
       {isLoading?<h1>Loading...</h1>:isError?<h1>{isError}</h1>:<div className="single-product-view"><ProductItem key={product._id} product={product} URL={URL} handleClick={handleClick} /></div>}
-      {lineItems.length >0 && <Cart lineItems={lineItems} totalPrice={totalPrice} handleRemoveItem={handleRemoveItem}/>}
+      {(lineItems.length>0 && toggle==true)  && <Cart lineItems={lineItems} totalPrice={totalPrice} handleRemoveItem={handleRemoveItem}/>}
     </div>
   )
 }
