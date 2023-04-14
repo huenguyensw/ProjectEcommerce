@@ -16,8 +16,6 @@ const Header = ({ itemCount }) => {
           <Badge color="secondary" badgeContent={itemCount}>
             <ShoppingCartIcon />{" "}
           </Badge>
-
-          
         </div>
 
       </section>
