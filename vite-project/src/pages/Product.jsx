@@ -11,7 +11,7 @@ const Product = () => {
   const URL = 'https://db.up.railway.app'
   const {data: product, isLoading, isError} = usefetchOneRecord('https://db.up.railway.app/products/'+ Params.id)
   
-  const [lineItems, setLineItems, totalPrice,setTotalPrice,toggle,setToggle] = useOutletContext();
+  const [lineItems, setLineItems, totalPrice,setTotalPrice,toggle,setToggle, handleResetCart] = useOutletContext();
 
   const handleClick = (product,amount) => {
     setToggle(true);
@@ -30,7 +30,43 @@ const Product = () => {
         }
       }))
     }
+    setTimeout(()=>{
+        setToggle(false)
+    },3000)
   }
+ 
+  const handleIncrement = (product) =>{
+    
+    setLineItems(lineItems.map((item) => {
+      if (item.product._id === product._id) {
+        console.log('exist')
+        setTotalPrice(totalPrice + item.product.price)
+        return { ...item, quantity: item.quantity + 1 }
+      } else {
+        return item;
+      }
+    }))
+  }
+
+  const handleDecrement = (product) =>{
+    setLineItems(lineItems.map((item) => {
+      if (item.product._id === product._id) {
+        console.log('exist')
+        setTotalPrice(totalPrice - item.product.price)
+        return { ...item, quantity: item.quantity - 1 }
+      } else {
+        return item;
+      }
+    }))
+  }
+  
+  // useEffect(()=>{
+  //   const timerID = setInterval(()=>{
+  //     setToggle(false)
+  //   },10000)
+  //   return ()=> clearInterval(timerID)
+  // },[toggle])
+
   const handleRemoveItem = (item)=>{
     setLineItems(lineItems => lineItems.filter((i)=>i.product._id != item.product._id));
     setTotalPrice(totalPrice - item.product.price*item.quantity)
@@ -39,7 +75,8 @@ const Product = () => {
   return (
     <div>
       {isLoading?<h1>Loading...</h1>:isError?<h1>{isError}</h1>:<div className="single-product-view"><ProductItem key={product._id} product={product} URL={URL} handleClick={handleClick} /></div>}
-      {(lineItems.length>0 && toggle==true)  && <Cart lineItems={lineItems} totalPrice={totalPrice} handleRemoveItem={handleRemoveItem}/>}
+      {(lineItems.length>0 && toggle==true)  && <Cart lineItems={lineItems} totalPrice={totalPrice} handleRemoveItem={handleRemoveItem} handleResetCart={handleResetCart} handleDecrement={handleDecrement} handleIncrement={handleIncrement}/>}
+      
     </div>
   )
 }

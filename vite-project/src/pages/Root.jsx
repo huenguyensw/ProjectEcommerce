@@ -4,7 +4,7 @@ import Header from '../components/Header'
 import { Outlet } from 'react-router-dom'
 
 const Root = () => {
-  const [lineItems, setlineItems,] = useState([]);
+  const [lineItems, setlineItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0)
   const [toggle, setToggle] = useState(false)
 
@@ -12,35 +12,16 @@ const Root = () => {
     setToggle(!toggle)
   }
 
-  //const [quantity, setQuantity] = useState(0);
-
-
-  // const [cart, setCart] = useState(false)
-  // const [insideCart, setInsideCart] = useState([])
-
-  // const toggle = () => {
-  //     setCart(!cart)
-  //     console.log(cart)
-  // }
-
-  // const toggleWithTime = (addToCart) => {
-  // setCart(!cart)
-
-  // // setInsideCart([
-  // //   ...insideCart,
-  // // addToCart
-  // // ])
-
-  // setTimeout(() => {
-  //   setCart(false);
-  // }, 1500);
-  // }
+  const handleResetCart = () =>{
+    setlineItems([])
+  }
+  
 
   return (
     <div className='body'>
       <Header itemCount={lineItems.length} handleToggle={handleToggle}/>
       <section>
-        <Outlet context={[lineItems, setlineItems, totalPrice, setTotalPrice, toggle, setToggle]} />
+        <Outlet context={[lineItems, setlineItems, totalPrice, setTotalPrice, toggle, setToggle, handleResetCart]} />
       </section>
       <Footer />
     </div>

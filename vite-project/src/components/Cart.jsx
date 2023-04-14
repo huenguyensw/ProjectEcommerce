@@ -1,29 +1,50 @@
 import React, { useState } from 'react'
 import Button from "@material-ui/core/Button";
 import CloseIcon from '@material-ui/icons/Close';
-const Cart = ({ lineItems, totalPrice, handleRemoveItem }) => {
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
+import { Link } from 'react-router-dom';
+const Cart = ({ lineItems, totalPrice, handleRemoveItem, handleResetCart, handleDecrement, handleIncrement}) => {
   const URL = 'https://db.up.railway.app'
-  let total = 0;
-  
+
+
   // //orders is an array of objects
   // // each object include 2 properties: product and quantity
-  
+
+
+
   return (
-    <ul className='ShoppingCart'>
-      {lineItems.map((order) =>
-        <li className='ShoppingItem'>
-          <img src={`${URL}/uploads/${order.product.image}`} width='20px' height='20px'></img>
-          <p>{order.product.title}</p>
-          <p>{order.quantity}x{order.product.price} kr</p>
-          <Button onClick={()=>handleRemoveItem(order)}>
-            <CloseIcon></CloseIcon>
-          </Button>
-        </li>)
-      }
-      <hr/>
-      <p>Total price: {totalPrice}</p>
-      {/* {console.log(order.product)} */}
-    </ul>
+    <div className='ShoppingCart'>
+      <ul>
+        {lineItems.map((order) =>
+          <li className='ShoppingItem'>
+            <img src={`${URL}/uploads/${order.product.image}`} width='20px' height='20px'></img>
+            <p>{order.product.title}</p>
+
+            {/* <section className='changeQuantity'>
+              <Button onClick={()=>handleIncrement(order)}>
+                <AddIcon />
+              </Button>
+              <Button onClick={()=>handleDecrement(order)}>
+                <RemoveIcon />
+              </Button>
+            </section> */}
+
+            <p>{order.quantity}x{order.product.price} kr</p>
+            <Button onClick={() => handleRemoveItem(order)}>
+              <CloseIcon></CloseIcon>
+            </Button>
+          </li>)
+        }
+      </ul>
+      <p style={{ textAlign: 'center' }}><b>Total price: {totalPrice} kr</b></p>
+      <section className='shoppingCart-btn'>
+        <button onClick={handleResetCart}>Reset Cart</button>
+        <Link to={'/checkout'}>Proceed to Checkout</Link>
+      </section>
+
+
+    </div>
   )
 }
 
