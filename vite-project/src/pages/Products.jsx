@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-
+import ProductItem from '../components/ProductItem';
 import usefetchAllRecords from './usefetchAllRecords'
-import ProductForm from '../components/ProductForm'
 import { useOutletContext } from 'react-router-dom'
 import Cart from '../components/Cart'
 
@@ -38,6 +37,7 @@ const Products = () => {
   }
   return (
     <div className='products-container'>
+
     {isLoading?<h1>Loading...</h1>:isError?<h1>{isError}</h1>:products.map((product)=><div className="product-area"><ProductItem key={product._id} product={product} URL={URL} cart={cart} toggle={toggle} toggleWithTime={toggleWithTime}/></div>)}
       {/* {isLoading ? <h1>Loading...</h1> : isError ? <h1>{isError}</h1> : products.map((product) => <ProductForm key={product._id} product={product} URL={URL} handleClick={handleClick} />)} */}
       {/* <button onClick={() => console.log(lineItems)}>show</button> */}
