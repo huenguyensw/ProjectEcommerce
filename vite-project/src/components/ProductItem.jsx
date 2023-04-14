@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const ProductItem = ({product, URL, toggleWithTime}) => {
+const ProductItem = ({product, URL, handleClick}) => {
     const endpoint = encodeURI(product.image);
     const [quantity, setQuantity] = useState(1);
 
@@ -13,12 +13,7 @@ const ProductItem = ({product, URL, toggleWithTime}) => {
         : setQuantity(quantity)
     }
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-
-      const addToCart = product;
-      toggleWithTime(addToCart, quantity);
-  }
+    
     
   return (
     <>
@@ -33,7 +28,7 @@ const ProductItem = ({product, URL, toggleWithTime}) => {
       <button className='quantity-button' onClick={increment}>+</button>
       <button className='quantity-button decrement-button' onClick={decrement}>-</button>
       <br/>
-      <button onClick={handleSubmit} className="add-to-cart-button">Add to cart</button><button id="favourite">&#x2764;</button>
+      <button onClick={()=>handleClick(product)} className="add-to-cart-button">Add to cart</button><button id="favourite">&#x2764;</button>
       </div>
       </>
   )

@@ -10,7 +10,6 @@ const Products = () => {
   const [lineItems, setLineItems] = useOutletContext();
   const URL = 'https://db.up.railway.app'
   const { data: products, isLoading, isError } = usefetchAllRecords(`${URL}/products`)
-  const [cart, toggle, toggleWithTime] = useOutletContext();
   const [totalPrice, setTotalPrice] = useState(0)
 
   const handleClick = (product) => {
@@ -38,7 +37,7 @@ const Products = () => {
   return (
     <div className='products-container'>
 
-    {isLoading?<h1>Loading...</h1>:isError?<h1>{isError}</h1>:products.map((product)=><div className="product-area"><ProductItem key={product._id} product={product} URL={URL} cart={cart} toggle={toggle} toggleWithTime={toggleWithTime}/></div>)}
+    {isLoading?<h1>Loading...</h1>:isError?<h1>{isError}</h1>:products.map((product)=><div className="product-area"><ProductItem key={product._id} product={product} URL={URL} handleClick={handleClick}/></div>)}
       {/* {isLoading ? <h1>Loading...</h1> : isError ? <h1>{isError}</h1> : products.map((product) => <ProductForm key={product._id} product={product} URL={URL} handleClick={handleClick} />)} */}
       {/* <button onClick={() => console.log(lineItems)}>show</button> */}
       {lineItems.length >0 && <Cart lineItems={lineItems} totalPrice={totalPrice} handleRemoveItem={handleRemoveItem}/>}
