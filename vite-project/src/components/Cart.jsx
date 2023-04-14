@@ -14,7 +14,7 @@ const Cart = ({ lineItems, totalPrice, handleRemoveItem }) => {
         <li className='ShoppingItem'>
           <img src={`${URL}/uploads/${order.product.image}`} width='20px' height='20px'></img>
           <p>{order.product.title}</p>
-          <p>{order.quantity}x{order.product.price}</p>
+          <p>{order.quantity}x{order.product.price} kr</p>
           <Button onClick={()=>handleRemoveItem(order)}>
             <CloseIcon></CloseIcon>
           </Button>
