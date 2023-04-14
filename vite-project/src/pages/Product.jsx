@@ -14,7 +14,7 @@ const Product = () => {
 
   return (
     <div>
-      {isLoading?<h1>Loading...</h1>:isError?<h1>{isError}</h1>:<ProductItem key={product._id} product={product} URL={URL} cart={cart} toggle={toggle} toggleWithTime={toggleWithTime}/>}
+      {isLoading?<h1>Loading...</h1>:isError?<h1>{isError}</h1>:<div className="single-product-view"><ProductItem key={product._id} product={product} URL={URL} cart={cart} toggle={toggle} toggleWithTime={toggleWithTime}/></div>}
     </div>
   )
 }
