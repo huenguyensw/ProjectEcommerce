@@ -138,11 +138,9 @@ th {
 #cart {
   width: 200px;
   height: 400px;
-  padding: 20px;
   background-color: rgb(255, 238, 238);
   border: 1px solid black;
   border-radius: 10px;
-
   position: fixed;
   top: 60px;
   right: 40px;
@@ -155,6 +153,16 @@ th {
 
 .cart-button:hover {
   color: rgb(60, 60, 60);
+}
+
+.in-cart-list {
+  list-style-type: none;
+  width: 100%;
+  display: flex;
+}
+
+.in-cart-list img {
+  margin-right: 10px;
 }
 
 .product-form{
