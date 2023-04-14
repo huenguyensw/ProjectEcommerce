@@ -7,11 +7,10 @@ import Cart from '../components/Cart'
 
 
 const Products = () => {
-  const [lineItems, setLineItems] = useOutletContext();
+  const [lineItems, setLineItems, totalPrice,setTotalPrice] = useOutletContext();
   const URL = 'https://db.up.railway.app'
   const { data: products, isLoading, isError } = usefetchAllRecords(`${URL}/products`)
   
-  const [totalPrice, setTotalPrice] = useState(0)
 
   const handleClick = (product,amount) => {
     let isExist = lineItems.some(element => element.product._id == product._id)

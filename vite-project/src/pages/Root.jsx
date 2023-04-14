@@ -4,7 +4,8 @@ import Header from '../components/Header'
 import { Outlet} from 'react-router-dom'
 
 const Root = () => {
-  const [lineItems, setlineItems] = useState([])
+  const [lineItems, setlineItems, ] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0)
   
   //const [quantity, setQuantity] = useState(0);
   
@@ -34,7 +35,7 @@ const Root = () => {
     <div className='body'>
       <Header itemCount={lineItems.length} />
       <section>
-        <Outlet context={[lineItems,setlineItems]}/>
+        <Outlet context={[lineItems,setlineItems,totalPrice,setTotalPrice]}/>
       </section>
       <Footer/>
     </div>

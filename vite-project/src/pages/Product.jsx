@@ -10,8 +10,7 @@ const Product = () => {
   const URL = 'https://db.up.railway.app'
   const {data: product, isLoading, isError} = usefetchOneRecord('https://db.up.railway.app/products/'+ Params.id)
   
-  const [lineItems, setLineItems] = useOutletContext();
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [lineItems, setLineItems, totalPrice,setTotalPrice] = useOutletContext();
 
   const handleClick = (product,amount) => {
     let isExist = lineItems.some(element => element.product._id == product._id)
