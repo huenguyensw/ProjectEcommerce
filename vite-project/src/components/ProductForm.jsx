@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ProductForm = ({product, URL}) => {
-  const endpoint = encodeURI(product.image)
- console.log()
+const ProductForm = ({product, URL, handleClick}) => {
+  const endpoint = encodeURI(product.image);
+
+
+  
+  
   return (
     <div className='product-area'>
       <img src={`${URL}/uploads/${endpoint}`} width='250px' height='250px'></img>
@@ -14,8 +17,7 @@ const ProductForm = ({product, URL}) => {
       <br/>
       <input type='text'></input>
       <br/>
-      <button>Add to cart</button>
-      
+      <button onClick={()=>handleClick(product)}>Add to cart</button>
     </div>
   )
 }
