@@ -35,30 +35,7 @@ const Product = () => {
     },3000)
   }
  
-  const handleIncrement = (product) =>{
-    
-    setLineItems(lineItems.map((item) => {
-      if (item.product._id === product._id) {
-        console.log('exist')
-        setTotalPrice(totalPrice + item.product.price)
-        return { ...item, quantity: item.quantity + 1 }
-      } else {
-        return item;
-      }
-    }))
-  }
-
-  const handleDecrement = (product) =>{
-    setLineItems(lineItems.map((item) => {
-      if (item.product._id === product._id) {
-        console.log('exist')
-        setTotalPrice(totalPrice - item.product.price)
-        return { ...item, quantity: item.quantity - 1 }
-      } else {
-        return item;
-      }
-    }))
-  }
+  
   
   // useEffect(()=>{
   //   const timerID = setInterval(()=>{

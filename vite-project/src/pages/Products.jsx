@@ -34,29 +34,29 @@ const Products = () => {
   },4000)
   }
 
-  const handleIncrement = (product) =>{
-    setLineItems(lineItems.map((item) => {
-      if (item.product._id === product._id) {
-        console.log('exist')
-        setTotalPrice(totalPrice + item.product.price)
-        return { ...item, quantity: item.quantity + 1 }
-      } else {
-        return item;
-      }
-    }))
-  }
+  // const handleIncrement = (product) =>{
+  //   setLineItems(lineItems.map((item) => {
+  //     if (item.product._id === product._id) {
+  //       console.log('exist')
+  //       setTotalPrice(totalPrice + item.product.price)
+  //       return { ...item, quantity: item.quantity + 1 }
+  //     } else {
+  //       return item;
+  //     }
+  //   }))
+  // }
 
-  const handleDecrement = (product) =>{
-    setLineItems(lineItems.map((item) => {
-      if (item.product._id === product._id) {
-        console.log('exist')
-        setTotalPrice(totalPrice - item.product.price)
-        return { ...item, quantity: item.quantity - 1 }
-      } else {
-        return item;
-      }
-    }))
-  }
+  // const handleDecrement = (product) =>{
+  //   setLineItems(lineItems.map((item) => {
+  //     if (item.product._id === product._id) {
+  //       console.log('exist')
+  //       setTotalPrice(totalPrice - item.product.price)
+  //       return { ...item, quantity: item.quantity - 1 }
+  //     } else {
+  //       return item;
+  //     }
+  //   }))
+  // }
   
 
   const handleRemoveItem = (item)=>{
@@ -70,7 +70,7 @@ const Products = () => {
       {/* {isLoading ? <h1>Loading...</h1> : isError ? <h1>{isError}</h1> : products.map((product) => <ProductForm key={product._id} product={product} URL={URL} handleClick={handleClick} />)} */}
       {/* <button onClick={() => console.log(lineItems)}>show</button> */}
       {console.log(toggle)}
-      {(lineItems.length >0 && toggle === true) && <Cart lineItems={lineItems} totalPrice={totalPrice} handleRemoveItem={handleRemoveItem} handleResetCart={handleResetCart} handleDecrement={handleDecrement} handleIncrement={handleIncrement} />}
+      {(lineItems.length >0 && toggle === true) && <Cart lineItems={lineItems}  totalPrice={totalPrice} handleRemoveItem={handleRemoveItem} handleResetCart={handleResetCart} />}
     </div>
   )
 }

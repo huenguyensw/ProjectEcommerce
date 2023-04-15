@@ -7,6 +7,7 @@ const Root = () => {
   const [lineItems, setlineItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0)
   const [toggle, setToggle] = useState(false)
+  
 
   const handleToggle = () => {
     setToggle(!toggle)
