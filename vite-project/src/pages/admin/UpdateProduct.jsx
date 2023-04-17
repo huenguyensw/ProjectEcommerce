@@ -107,7 +107,9 @@ const UpdateProduct = () => {
 
       <form onSubmit={handleSubmit}>
         {/* Render the product fields in the input elements */}
-        {product.image==''||product.image==null?'':<img src={src} width={250} height={250}></img>}
+        {product.image==''||product.image==null
+        ? ''
+        : <img src={src} width={250} height={250}></img>}
         <label>
           Upload Image:
           <input type="file" name='productImage' onChange={handleFiles} />

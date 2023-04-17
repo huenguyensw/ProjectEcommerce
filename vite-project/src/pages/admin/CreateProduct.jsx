@@ -66,6 +66,7 @@ const CreateProduct = () => {
           Upload Image:
           <br/>
           <input type="file" name='productImage' onChange={handleFiles} />
+          <Link to="/admin/manage-products">&#8592; Back</Link>
         </label>
       </section>
       <section className='product-form-info' >
