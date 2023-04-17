@@ -1,10 +1,4 @@
-.header{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 30px;
-  margin:0;
-}
+
 .nav{
   display: flex;
   flex-direction: row;
@@ -33,10 +27,6 @@
 .product-area img {
   height: 200px;
   width: 200px;
-}
-.footer{
-  text-align: center;
-  
 }
 .body{
   background-color: pink;
@@ -305,11 +295,11 @@ th {
 
 .ShoppingCart{
   position: absolute;
-  top: 45px;
-  right: 10px;
-  border: 1px solid white;
-  background-color: white;
-  display: flex;
+  top: 65px;
+  right: 39px;
+  border: 1px solid rgb(246, 230, 211);
+  background-color: rgb(251, 233, 211);
+  display: grid;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 4px;
@@ -323,4 +313,35 @@ th {
   padding: 0 10px;
   justify-items:left;
   justify-content:space-between
+}
+.shoppingCart-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 10px;
+}
+.Checkout-Products{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 4px;
+  
+}
+.checkout .ShoppingCart{
+  position: unset;
+  background-color: unset;
+  border: none;
+}
+.checkout .shoppingCart-btn{
+  display: none;
+}
+
+.changeQuantity{
+  display: inline;
+}
+.ShoppingCart .changeQuantity{
+  display: none;
+}
+.checkout .changeQuantity{
+  display: unset
 }

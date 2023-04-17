@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
 import './index.css'
 
 import {
@@ -14,7 +13,7 @@ import CreateProduct from './pages/admin/CreateProduct'
 import Root from './pages/Root'
 import Product from './pages/Product'
 import Checkout from './pages/Checkout'
-import Cart from './components/Cart'
+
 
 const router = createBrowserRouter([
   {
@@ -42,8 +41,8 @@ const router = createBrowserRouter([
         element: <CreateProduct/>
       },
       {
-        path: "/cart",
-        element: <Cart/>
+        path: "/checkout",
+        element: <Checkout/>
       },
 
     ]
