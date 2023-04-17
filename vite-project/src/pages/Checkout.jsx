@@ -1,6 +1,7 @@
 import React from 'react'
 import { useOutletContext } from 'react-router-dom';
 import Cart from '../components/Cart'
+import { Link } from 'react-router-dom';
 
 const Checkout = () => {
     const { lineItems, setLineItems, totalPrice, setTotalPrice, handleResetCart } = useOutletContext();
@@ -17,7 +18,7 @@ const Checkout = () => {
                 <hr />
                 {lineItems.length > 0
                     ? <Cart handleRemoveItem={handleRemoveItem}/>
-                    : <h1>Shopping cart is empty</h1>}
+                    : <h1>Shopping cart is empty, <Link to={"/"}>start shopping!</Link></h1>}
             </section>
             <section className='news'>
                 <h3>Newsletter</h3>

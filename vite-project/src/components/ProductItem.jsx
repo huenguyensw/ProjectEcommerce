@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 const ProductItem = ({product, URL, handleClick}) => {
     const endpoint = encodeURI(product.image);
-    const [quantity, setQuantity] = useState(1);
-
+    const [quantity, setQuantity] = useState(1)
+    
     const increment = () => {
         setQuantity(quantity + 1);
     }
