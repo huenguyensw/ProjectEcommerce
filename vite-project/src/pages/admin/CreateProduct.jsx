@@ -65,7 +65,7 @@ const CreateProduct = () => {
         <label>
           Upload Image:
           <br/>
-          <input type="file" name='productImage' onChange={handleFiles} required />
+          <input type="file" name='productImage' onChange={handleFiles} />
         </label>
       </section>
       <section className='product-form-info' >
