@@ -4,7 +4,7 @@ import Header from '../components/Header'
 import { Outlet } from 'react-router-dom'
 
 const Root = () => {
-  const [lineItems, setlineItems] = useState([]);
+  const [lineItems, setLineItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0)
   const [toggle, setToggle] = useState(false)
   
@@ -14,7 +14,7 @@ const Root = () => {
   }
 
   const handleResetCart = () =>{
-    setlineItems([])
+    setLineItems([])
   }
   
 
@@ -22,7 +22,7 @@ const Root = () => {
     <div className='body'>
       <Header itemCount={lineItems.length} handleToggle={handleToggle}/>
       <section>
-        <Outlet context={[lineItems, setlineItems, totalPrice, setTotalPrice, toggle, setToggle, handleResetCart]} />
+        <Outlet context={{lineItems, setLineItems, totalPrice, setTotalPrice, toggle, setToggle, handleResetCart}} />
       </section>
       <Footer />
     </div>

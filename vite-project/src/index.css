@@ -1,10 +1,4 @@
-.header{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 30px;
-  margin:0;
-}
+
 .nav{
   display: flex;
   flex-direction: row;
@@ -33,10 +27,6 @@
 .product-area img {
   height: 200px;
   width: 200px;
-}
-.footer{
-  text-align: center;
-  
 }
 .body{
   background-color: pink;

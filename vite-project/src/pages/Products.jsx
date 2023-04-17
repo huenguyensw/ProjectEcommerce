@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import ProductItem from '../components/ProductItem';
 import usefetchAllRecords from './usefetchAllRecords'
 import { useOutletContext } from 'react-router-dom'
@@ -7,7 +7,8 @@ import Cart from '../components/Cart'
 
 
 const Products = () => {
-  const [lineItems, setLineItems, totalPrice,setTotalPrice,toggle,setToggle,handleResetCart] = useOutletContext();
+  const intervalRef = useRef(null);
+  const {lineItems, setLineItems, totalPrice,setTotalPrice,toggle,setToggle} = useOutletContext();
   const URL = 'https://db.up.railway.app'
   const { data: products, isLoading, isError } = usefetchAllRecords(`${URL}/products`)
   
@@ -21,7 +22,7 @@ const Products = () => {
     } else {
       setLineItems(lineItems.map((order) => {
         if (order.product._id === product._id) {
-          console.log('exist')
+          
           setTotalPrice(totalPrice + order.product.price*amount)
           return { ...order, quantity: order.quantity + amount }
         } else {
@@ -29,34 +30,12 @@ const Products = () => {
         }
       }))
     }
-    setTimeout(()=>{
+  //set timeout for mini-shopping cart
+  clearInterval(intervalRef.current);
+  intervalRef.current =setTimeout(()=>{
       setToggle(false)
-  },4000)
+  },3000)
   }
-
-  // const handleIncrement = (product) =>{
-  //   setLineItems(lineItems.map((item) => {
-  //     if (item.product._id === product._id) {
-  //       console.log('exist')
-  //       setTotalPrice(totalPrice + item.product.price)
-  //       return { ...item, quantity: item.quantity + 1 }
-  //     } else {
-  //       return item;
-  //     }
-  //   }))
-  // }
-
-  // const handleDecrement = (product) =>{
-  //   setLineItems(lineItems.map((item) => {
-  //     if (item.product._id === product._id) {
-  //       console.log('exist')
-  //       setTotalPrice(totalPrice - item.product.price)
-  //       return { ...item, quantity: item.quantity - 1 }
-  //     } else {
-  //       return item;
-  //     }
-  //   }))
-  // }
   
 
   const handleRemoveItem = (item)=>{
@@ -66,11 +45,15 @@ const Products = () => {
   return (
     <div className='products-container'>
 
-    {isLoading?<h1>Loading...</h1>:isError?<h1>{isError}</h1>:products.map((product)=><div className="product-area"><ProductItem key={product._id} product={product} URL={URL} handleClick={handleClick}/></div>)}
-      {/* {isLoading ? <h1>Loading...</h1> : isError ? <h1>{isError}</h1> : products.map((product) => <ProductForm key={product._id} product={product} URL={URL} handleClick={handleClick} />)} */}
-      {/* <button onClick={() => console.log(lineItems)}>show</button> */}
-      {console.log(toggle)}
-      {(lineItems.length >0 && toggle === true) && <Cart lineItems={lineItems}  totalPrice={totalPrice} handleRemoveItem={handleRemoveItem} handleResetCart={handleResetCart} />}
+    {isLoading
+    ? <h1>Loading...</h1>:isError?<h1>{isError}</h1>
+    : products.map((product)=>
+      <div key={product._id} className="product-area">
+        <ProductItem  product={product} URL={URL} handleClick={handleClick}/>
+      </div>)}
+      
+      {(lineItems.length >0 && toggle === true) 
+        && <Cart  handleRemoveItem={handleRemoveItem} />}
     </div>
   )
 }

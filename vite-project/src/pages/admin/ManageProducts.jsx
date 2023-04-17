@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import usefetchAllRecords from '../usefetchAllRecords'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 const ManageProducts = () => {
   const {data:products,isLoading, isError} = usefetchAllRecords('https://db.up.railway.app/products')
@@ -26,9 +27,10 @@ const ManageProducts = () => {
   
   return (
     <div>
-      <section className='create-Product-Btn'>
+      <HeaderSection>
+        <h1>Manage Products</h1>
         <Link to='/admin/create-product'>Create new product</Link>
-      </section>
+      </HeaderSection>
       <table className='data'>
         <thead>
           <tr>
@@ -39,16 +41,16 @@ const ManageProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {products.length == 0? <h1>No product is available!</h1>:
-          products.map((product)=>{ return (
+          {products.length == 0
+          ? <h1>No product is available!</h1>
+          : products.map((product)=>{ return (
             <tr key={product._id}>
               <td>{product.title}</td>
               <td>{product.price}</td>
               <td>{product.quantity}</td>
               <td>
-                <Link to={"/admin/update-product/" + `${product._id}`}>Edit</Link>|  <a href="#" onClick={() => handleDelete(product._id)}>
-      Delete
-    </a>
+                <Link to={"/admin/update-product/" + `${product._id}`}>Edit</Link>|  
+                <a href="#" onClick={() => handleDelete(product._id)}>Delete</a>
               </td>
             </tr>
           )})}
@@ -58,5 +60,13 @@ const ManageProducts = () => {
     </div>
   )
 }
+
+const HeaderSection = styled.section`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0 100px;
+`;
 
 export default ManageProducts

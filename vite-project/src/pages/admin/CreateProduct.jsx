@@ -58,7 +58,9 @@ const CreateProduct = () => {
   return (
     <form className='product-form' onSubmit={handleSubmit}>
       <section className='product-form-photo'>
-      {image==''||image==null?"":<img src={image} width={250} height={250} alt='product-image'></img>}
+      {image==''||image==null
+      ? ""
+      : <img src={image} width={250} height={250} alt='product-image'></img>}
       <br/>
         <label>
           Upload Image:
@@ -78,7 +80,7 @@ const CreateProduct = () => {
           <textarea name='description' rows={10} value={inputs.description} onChange={handleChange} required></textarea>
         </label>
         <label>
-          Price:
+          Price(kr):
           <br />
           <input type='text' name='price' value={inputs.price} onChange={handleChange} required></input>
         </label>
