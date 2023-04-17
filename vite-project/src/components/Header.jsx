@@ -1,23 +1,39 @@
 import React from 'react'
 import Navigation from './Navigation'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
-import Cart from './Cart'
+import Badge from "@material-ui/core/Badge";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import styled from "styled-components"
 
-const Header = ({cart, toggle, insideCart, setInsideCart}) => {
 
-    return (
-        <div className='header'>
-            <Navigation />
-            <section>
-                <button className="cart-button" onClick={toggle} ><FontAwesomeIcon icon={faCartShopping}/></button>
-                {cart ? <Cart insideCart={insideCart} setInsideCart={setInsideCart}  onMouseLeave={toggle} />
-                : ''
-                }
-            </section>
-        </div>
-    )
+
+const Header = ({ itemCount, handleToggle }) => {
+
+  return (
+    <HeaderSection>
+      <Navigation />
+      <Button onClick={handleToggle}>
+        <Badge color="secondary" badgeContent={itemCount}>
+          <ShoppingCartIcon />{" "}
+        </Badge>
+      </Button>
+    </HeaderSection>
+  )
 }
+
+const Button = styled.button`
+  border: none;
+  background-color: unset;
+`;
+
+const HeaderSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  margin:0;
+`;
+
+
 
 export default Header
