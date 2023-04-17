@@ -5,6 +5,8 @@ import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import {motion} from 'framer-motion'
+
 
 
 const Cart = ({handleRemoveItem}) => {
@@ -49,7 +51,11 @@ const Cart = ({handleRemoveItem}) => {
 
 
   return (
-    <div className='ShoppingCart'>
+    <motion.div 
+    initial={{ opacity: 0, scale: 0.5 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5 }} 
+    className='ShoppingCart'>
       <ul>
         {lineItems.map((order) =>
           <li key= {order.product._id} className='ShoppingItem'>
@@ -79,7 +85,7 @@ const Cart = ({handleRemoveItem}) => {
       </section>
 
 
-    </div>
+    </motion.div>
   )
 }
 

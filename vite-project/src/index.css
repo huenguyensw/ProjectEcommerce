@@ -207,6 +207,9 @@ th {
   border-radius: 5px;
   margin: 20px 150px;
 }
+.title-addProduct{
+  text-align: center;
+}
 .product-form-info input{
   width: 100%;
   height: 1.3rem;
