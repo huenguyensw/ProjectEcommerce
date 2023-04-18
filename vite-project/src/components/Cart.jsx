@@ -82,7 +82,7 @@ const Cart = ({handleRemoveItem, popup}) => {
       <p style={{ textAlign: 'center' }}><b>Total price: {totalPrice} kr</b></p>
       <ShoppingCartBtn popup={popup}>
         <ResetCartBtn onClick={handleResetCart}>Reset Cart</ResetCartBtn>
-        <Link to={'/checkout'} onClick={()=>setToggle(false)}>Proceed to Checkout</Link>
+        <ResetCartBtn><Link style={{textDecoration: 'none', color: 'unset'}} to={'/checkout'} onClick={()=>setToggle(false)}>Proceed to Checkout</Link></ResetCartBtn>
       </ShoppingCartBtn>
 
     </CartWrapper>
