@@ -123,10 +123,11 @@ const ResetCartBtn = styled.button`
   font-size: 1rem;
   cursor: pointer;
   box-shadow: 0px 0px 1.5px;
-  padding: 3px;
+  padding: 7px;
   background-color: white;
   border-radius: 3px;
   border: none;
+  color: rgb(103, 163, 186);
 
   &:hover {
     background-color: rgb(103, 163, 186);
