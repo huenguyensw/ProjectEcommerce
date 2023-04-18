@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import ProductItem from '../components/ProductItem';
 import { useOutletContext } from "react-router-dom";
 import Cart from '../components/Cart'
+import styled from 'styled-components'
 
 const Product = () => {
   const Params = useParams();
@@ -12,7 +13,7 @@ const Product = () => {
   const URL = 'https://db.up.railway.app'
   const { data: product, isLoading, isError } = usefetchOneRecord('https://db.up.railway.app/products/' + Params.id)
 
-  const { lineItems, setLineItems, totalPrice, setTotalPrice, toggle, setToggle } = useOutletContext();
+  const { lineItems, setLineItems, totalPrice, setTotalPrice, toggle, setToggle, setIsDisplayCart} = useOutletContext();
 
   const handleClick = (product, amount) => {
     setToggle(true);
@@ -36,6 +37,8 @@ const Product = () => {
     intervalRef.current = setTimeout(() => {
       setToggle(false)
     }, 3000)
+
+    setIsDisplayCart(true);
   }
 
   const handleRemoveItem = (item) => {
@@ -49,11 +52,10 @@ const Product = () => {
         ? <h1>Loading...</h1>
         : isError
           ? <h1>{isError}</h1>
-          : <div className="single-product-view">
-            <ProductItem key={product._id} product={product} URL={URL} handleClick={handleClick} />
-          </div>}
+          : <ProductItem key={product._id} product={product} URL={URL} handleClick={handleClick} isSingleView={true}/>
+          }
       {(lineItems.length > 0 && toggle == true) 
-      && <Cart handleRemoveItem={handleRemoveItem}/>}
+      && <Cart popup={true} handleRemoveItem={handleRemoveItem}/>}
     </div>
   )
 }

@@ -3,9 +3,13 @@ import axios from 'axios'
 import usefetchAllRecords from '../usefetchAllRecords'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { useOutletContext } from 'react-router-dom'
 
 const ManageProducts = () => {
-  const {data:products,isLoading, isError} = usefetchAllRecords('https://db.up.railway.app/products')
+  const {data:products,isLoading, isError} = usefetchAllRecords('https://db.up.railway.app/products');
+  const {setIsDisplayCart} = useOutletContext();
+
+
   const handleDelete = async (productId) => {
     try {
       // Make API call to delete product using productId
@@ -24,6 +28,9 @@ const ManageProducts = () => {
   if(isError){
     return <h1>{isError}</h1>
   }
+
+  //hide Cart icon
+  setIsDisplayCart(false);
   
   return (
     <div>

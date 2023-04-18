@@ -6,12 +6,12 @@ import styled from "styled-components"
 
 
 
-const Header = ({ itemCount, handleToggle }) => {
+const Header = ({ itemCount, handleToggle, isDisplayCart }) => {
 
   return (
     <HeaderSection>
       <Navigation />
-      <Button onClick={handleToggle}>
+      <Button isDisplayCart={isDisplayCart} onClick={handleToggle}>
         <Badge color="secondary" badgeContent={itemCount}>
           <ShoppingCartIcon />{" "}
         </Badge>
@@ -21,6 +21,7 @@ const Header = ({ itemCount, handleToggle }) => {
 }
 
 const Button = styled.button`
+ display: ${props => (!props.isDisplayCart) && 'none'};
   border: none;
   background-color: unset;
 `;

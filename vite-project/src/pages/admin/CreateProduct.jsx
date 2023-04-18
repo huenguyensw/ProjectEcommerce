@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import  {motion} from 'framer-motion'
+import { useOutletContext } from 'react-router-dom';
 
 
 const CreateProduct = () => {
@@ -8,6 +10,7 @@ const CreateProduct = () => {
   const [inputs, setInputs] = useState({})
   const URL = 'https://db.up.railway.app/products'
   const navigate = useNavigate();
+  const {setIsDisplayCart} = useOutletContext();
   
   const  [image,setImage] = useState('');
 
@@ -55,7 +58,12 @@ const CreateProduct = () => {
   }
 
 
+  //hide Cart icon
+  setIsDisplayCart(false);
+
   return (
+    <>
+    <motion.h1  animate={{ x: 100 }} className='title-addProduct'>Create Product</motion.h1>
     <form className='product-form' onSubmit={handleSubmit}>
       <section className='product-form-photo'>
       {image==''||image==null
@@ -66,6 +74,7 @@ const CreateProduct = () => {
           Upload Image:
           <br/>
           <input type="file" name='productImage' onChange={handleFiles} />
+          <Link to="/admin/manage-products">&#8592; Back</Link>
         </label>
       </section>
       <section className='product-form-info' >
@@ -91,8 +100,9 @@ const CreateProduct = () => {
         </label>
         <button type="submit">Create</button>
       </section>
-
     </form>
+    </>
+    
 
   )
 }
