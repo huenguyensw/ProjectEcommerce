@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 const UpdateProduct = () => {
   // Set up state for the product
   const [product, setProduct] = useState({});
-  const [file, setFile] = useState({})
+  const [file, setFile] = useState({});
+  const {setIsDisplayCart} = useOutletContext();
 
   // Get the navigate function from react-router
   const navigate = useNavigate();
@@ -22,6 +24,9 @@ const UpdateProduct = () => {
   }, []);
 
   console.log(product.image)
+
+  //hide Cart icon
+  setIsDisplayCart(false);
 
   // Function to fetch the product by id from the API
   const fetchProduct = async () => {

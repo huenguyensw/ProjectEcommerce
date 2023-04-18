@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import  {motion} from 'framer-motion'
+import { useOutletContext } from 'react-router-dom';
 
 
 const CreateProduct = () => {
@@ -9,6 +10,7 @@ const CreateProduct = () => {
   const [inputs, setInputs] = useState({})
   const URL = 'https://db.up.railway.app/products'
   const navigate = useNavigate();
+  const {setIsDisplayCart} = useOutletContext();
   
   const  [image,setImage] = useState('');
 
@@ -55,6 +57,9 @@ const CreateProduct = () => {
     console.log(res)
   }
 
+
+  //hide Cart icon
+  setIsDisplayCart(false);
 
   return (
     <>
