@@ -60,7 +60,7 @@ const Cart = ({handleRemoveItem, popup}) => {
       <ul>
         {lineItems.map((order) =>
           <ShoppingItem key= {order.product._id}>
-            <img src={`${URL}/uploads/${order.product.image}`} width='20px' height='20px'></img>
+            <img src={`${URL}/uploads/${order.product.image}`} width='25px' height='25px'></img>
             <p>{order.product.title}</p>
 
             <ChangeQuantityBtn popup={popup}>
@@ -95,6 +95,7 @@ const CartWrapper = styled(motion.div)`
   right: ${props => props.popup ? '24px' : 'unset'};
   width: ${props => props.popup ? '400px' : 'unset'};
   border: 1px solid skyblue;
+  box-shadow: ${props => props.popup ? '0px 5px 20px' : 'unset'};
   background-color: ${props => props.popup ? 'white' : 'unset'};
   display: grid;
   flex-direction: column;
