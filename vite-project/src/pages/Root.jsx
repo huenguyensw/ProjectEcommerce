@@ -8,6 +8,7 @@ const Root = () => {
   const [lineItems, setLineItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0)
   const [toggle, setToggle] = useState(false)
+  const [isDisplayCart, setIsDisplayCart] = useState(true);
   
 
   const handleToggle = () => {
@@ -21,9 +22,9 @@ const Root = () => {
 
   return (
     <BodyPage>
-      <Header itemCount={lineItems.length} handleToggle={handleToggle}/>
+      <Header itemCount={lineItems.length} handleToggle={handleToggle} isDisplayCart = {isDisplayCart}/>
       <section>
-        <Outlet context={{lineItems, setLineItems, totalPrice, setTotalPrice, toggle, setToggle, handleResetCart}} />
+        <Outlet context={{lineItems, setLineItems, totalPrice, setTotalPrice, toggle, setToggle, handleResetCart,setIsDisplayCart}} />
       </section>
       <Footer />
     </BodyPage>

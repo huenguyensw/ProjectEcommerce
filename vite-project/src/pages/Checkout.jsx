@@ -5,13 +5,14 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
 const Checkout = () => {
-    const { lineItems, setLineItems, totalPrice, setTotalPrice, handleResetCart } = useOutletContext();
+    const { lineItems, setLineItems, totalPrice, setTotalPrice,setIsDisplayCart } = useOutletContext();
 
     const handleRemoveItem = (item) => {
         setLineItems(lineItems => lineItems.filter((i) => i.product._id != item.product._id));
         setTotalPrice(totalPrice - item.product.price * item.quantity)
     }
 
+    setIsDisplayCart(false);
     return (
         <CheckoutPage>
             <OrdersSection>

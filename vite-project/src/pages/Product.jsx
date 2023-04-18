@@ -13,7 +13,7 @@ const Product = () => {
   const URL = 'https://db.up.railway.app'
   const { data: product, isLoading, isError } = usefetchOneRecord('https://db.up.railway.app/products/' + Params.id)
 
-  const { lineItems, setLineItems, totalPrice, setTotalPrice, toggle, setToggle } = useOutletContext();
+  const { lineItems, setLineItems, totalPrice, setTotalPrice, toggle, setToggle, setIsDisplayCart} = useOutletContext();
 
   const handleClick = (product, amount) => {
     setToggle(true);
@@ -37,6 +37,8 @@ const Product = () => {
     intervalRef.current = setTimeout(() => {
       setToggle(false)
     }, 3000)
+
+    setIsDisplayCart(true);
   }
 
   const handleRemoveItem = (item) => {
