@@ -13,6 +13,8 @@ const FooterSection = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  padding: 20px;
+  margin-right: 10px;
+  justify-content: end;
 `;
 export default Footer
