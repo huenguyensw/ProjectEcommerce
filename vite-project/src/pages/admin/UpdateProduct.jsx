@@ -89,9 +89,11 @@ const UpdateProduct = () => {
 
   // Render the component
   return (
+    <UpdateWrapper>
     <div id="page">
       <h1>Update Products</h1>
 
+    <StyleInputs>
       <form onSubmit={handleSubmit}>
         {/* Render the product fields in the input elements */}
         {product.image==''||product.image==null
@@ -101,7 +103,7 @@ const UpdateProduct = () => {
           Upload Image:
           <input type="file" name='productImage' onChange={handleFiles} />
         </label>
-        <br />
+        <br/>
         <label>
           Title:
           <br/>
@@ -129,8 +131,43 @@ const UpdateProduct = () => {
         {/* Add a button to submit the form */}
         <button>Update</button>
       </form>
+      </StyleInputs>
     </div>
+    </UpdateWrapper>
   );
 };
 
+const UpdateWrapper = styled.div`
+display: flex;
+flex-direction: column;
+width: 600px;
+height: 700px;
+border-radius:10px;
+padding: 10px;
+border: 1px solid white;
+background-color: white;
+align-items: center;
+text-align: center;
+margin: 10px;
+justify-content: space-between;
+`;
+
+const StyleInputs = styled.form`
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+row-gap: 20px;
+column-gap:20px;
+padding: 10px;
+margin: 5px 0;
+line-height: 2.5;
+`;
+
+const Button = styled.button`
+font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
 export default UpdateProduct;
