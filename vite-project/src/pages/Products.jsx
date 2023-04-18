@@ -3,6 +3,7 @@ import ProductItem from '../components/ProductItem';
 import usefetchAllRecords from './usefetchAllRecords'
 import { useOutletContext } from 'react-router-dom'
 import Cart from '../components/Cart'
+import styled from 'styled-components'
 
 
 
@@ -43,19 +44,44 @@ const Products = () => {
     setTotalPrice(totalPrice - item.product.price*item.quantity)
   }
   return (
-    <div className='products-container'>
+    <ProductContainer>
 
     {isLoading
-    ? <h1>Loading...</h1>:isError?<h1>{isError}</h1>
-    : products.map((product)=>
-      <div key={product._id} className="product-area">
-        <ProductItem  product={product} URL={URL} handleClick={handleClick}/>
-      </div>)}
+    ? <h1>Loading...</h1>
+    :isError
+        ?<h1>{isError}</h1>
+        : products.map((product)=>
+      <ProductList key={product._id}>
+        <ProductItem  product={product} URL={URL} handleClick={handleClick} isSingleView={false}/>
+      </ProductList>)}
       
       {(lineItems.length >0 && toggle === true) 
         && <Cart  handleRemoveItem={handleRemoveItem} />}
-    </div>
+    </ProductContainer>
   )
 }
+
+
+
+const ProductList = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  padding: 10px;
+  border: 1px solid white;
+  background-color: white;
+  align-items: center;
+  text-align: center;
+`;
+
+const ProductContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap:20px;
+  padding: 30px;
+`;
+
 
 export default Products

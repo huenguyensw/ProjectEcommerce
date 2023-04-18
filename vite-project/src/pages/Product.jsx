@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import ProductItem from '../components/ProductItem';
 import { useOutletContext } from "react-router-dom";
 import Cart from '../components/Cart'
+import styled from 'styled-components'
 
 const Product = () => {
   const Params = useParams();
@@ -49,9 +50,8 @@ const Product = () => {
         ? <h1>Loading...</h1>
         : isError
           ? <h1>{isError}</h1>
-          : <div className="single-product-view">
-            <ProductItem key={product._id} product={product} URL={URL} handleClick={handleClick} />
-          </div>}
+          : <ProductItem key={product._id} product={product} URL={URL} handleClick={handleClick} isSingleView={true}/>
+          }
       {(lineItems.length > 0 && toggle == true) 
       && <Cart handleRemoveItem={handleRemoveItem}/>}
     </div>
