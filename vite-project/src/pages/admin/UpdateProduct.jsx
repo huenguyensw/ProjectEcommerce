@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import styled from "styled-components";
 
 const UpdateProduct = () => {
   // Set up state for the product
@@ -48,26 +49,7 @@ const UpdateProduct = () => {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   await fetch("https://db.up.railway.app/products/" + id, {
-    //     method: "PUT",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       image: product.image,
-    //       title: product.title,
-    //       price: product.price,
-    //       description: product.description,
-    //       quantityOfProducts: product.quantityOfProducts
-    //     }),
-    //   });
-
-    //   // Navigate to the manage-products page after successful submission
-    //   navigate("/admin/manage-products");
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    
     var formData = new FormData();
     formData.append('productImage', file);
     formData.append('title', product.title);
