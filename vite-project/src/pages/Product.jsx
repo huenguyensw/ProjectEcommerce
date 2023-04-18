@@ -53,7 +53,7 @@ const Product = () => {
           : <ProductItem key={product._id} product={product} URL={URL} handleClick={handleClick} isSingleView={true}/>
           }
       {(lineItems.length > 0 && toggle == true) 
-      && <Cart handleRemoveItem={handleRemoveItem}/>}
+      && <Cart popup={true} handleRemoveItem={handleRemoveItem}/>}
     </div>
   )
 }

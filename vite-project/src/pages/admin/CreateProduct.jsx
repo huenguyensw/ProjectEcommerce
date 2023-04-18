@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import  {motion} from 'framer-motion'
 
 
 const CreateProduct = () => {
@@ -56,6 +57,8 @@ const CreateProduct = () => {
 
 
   return (
+    <>
+    <motion.h1  animate={{ x: 100 }} className='title-addProduct'>Create Product</motion.h1>
     <form className='product-form' onSubmit={handleSubmit}>
       <section className='product-form-photo'>
       {image==''||image==null
@@ -92,8 +95,9 @@ const CreateProduct = () => {
         </label>
         <button type="submit">Create</button>
       </section>
-
     </form>
+    </>
+    
 
   )
 }

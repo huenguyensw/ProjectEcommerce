@@ -6,10 +6,11 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import { useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {motion} from 'framer-motion'
+import styled from 'styled-components';
 
 
 
-const Cart = ({handleRemoveItem}) => {
+const Cart = ({handleRemoveItem, popup}) => {
   const URL = 'https://db.up.railway.app'
   const {lineItems, setLineItems, totalPrice, setToggle, setTotalPrice,handleResetCart} = useOutletContext();
 
@@ -51,14 +52,10 @@ const Cart = ({handleRemoveItem}) => {
 
 
   return (
-    <motion.div 
-    initial={{ opacity: 0, scale: 0.5 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.5 }} 
-    className='ShoppingCart'>
+    <CartWrapper popup={popup}>
       <ul>
         {lineItems.map((order) =>
-          <li key= {order.product._id} className='ShoppingItem'>
+          <ShoppingItem key= {order.product._id}>
             <img src={`${URL}/uploads/${order.product.image}`} width='20px' height='20px'></img>
             <p>{order.product.title}</p>
 
@@ -75,18 +72,45 @@ const Cart = ({handleRemoveItem}) => {
             <Button onClick={() => handleRemoveItem(order)}>
               <DeleteIcon></DeleteIcon>
             </Button>
-          </li>)
+          </ShoppingItem>)
         }
       </ul>
       <p style={{ textAlign: 'center' }}><b>Total price: {totalPrice} kr</b></p>
-      <section className='shoppingCart-btn'>
+      <ShoppingCartBtn popup={popup}>
         <button onClick={handleResetCart}>Reset Cart</button>
         <Link to={'/checkout'} onClick={()=>setToggle(false)}>Proceed to Checkout</Link>
-      </section>
+      </ShoppingCartBtn>
 
 
-    </motion.div>
+    </CartWrapper>
   )
 }
 
+const CartWrapper = styled.div`
+  position: ${props => props.popup ? 'absolute' : 'unset'};
+  top: ${props => props.popup ? '65px' : 'unset'};
+  right: ${props => props.popup ? '39px' : 'unset'};
+  width: ${props => props.popup ? '400px' : 'unset'};
+  border: 1px solid rgb(246, 230, 211);
+  background-color: ${props => props.popup ? 'rgb(251, 233, 211)' : 'unset'};
+  display: grid;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 4px;
+  grid-template-columns: 1fr;
+  
+`;
+
+const ShoppingItem = styled.li`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding:0;
+  align-items:center;
+`;
+const ShoppingCartBtn = styled.section`
+  display: ${props => props.popup ? 'flex' : 'none'};
+  flex-direction: ${props => props.popup ? 'row' : 'none'};
+  justify-content: ${props => props.popup ? 'space-around' : 'none'};
+  padding-bottom: ${props => props.popup ? '10px' : 'none'};
+`;
 export default Cart
