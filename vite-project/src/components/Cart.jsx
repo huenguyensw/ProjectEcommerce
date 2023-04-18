@@ -92,7 +92,7 @@ const Cart = ({handleRemoveItem, popup}) => {
 const CartWrapper = styled(motion.div)`
   position: ${props => props.popup ? 'absolute' : 'unset'};
   top: ${props => props.popup ? '65px' : 'unset'};
-  right: ${props => props.popup ? '39px' : 'unset'};
+  right: ${props => props.popup ? '24px' : 'unset'};
   width: ${props => props.popup ? '400px' : 'unset'};
   border: 1px solid rgb(246, 230, 211);
   background-color: ${props => props.popup ? 'white' : 'unset'};
