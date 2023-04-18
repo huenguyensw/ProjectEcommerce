@@ -37,8 +37,8 @@ const ProductItem = ({product, URL, handleClick, isSingleView}) => {
   )
 }
 
-const lightColor = 'skyblue'
-const darkColor = 'rgb(47, 177, 229)'
+const lightColor = 'rgb(123, 172, 191)'
+const darkColor = 'rgb(103, 163, 186)'
 
 const StockValue = styled.p`
   color: black;
@@ -95,11 +95,15 @@ const QuantityInput = styled.input`
 const FavouriteButton = styled.button`
   border: 1px solid ${darkColor};
   color: ${darkColor};
-  background-color: ${lightColor};
+  background-color: white;
   border-radius: 15px;
   font-size: 15pt;
   padding: 5px;
   margin: 10px;
+
+  &:hover {
+    background-color: ${lightColor}
+  }
 `;
 
 const AddToCart = styled.button`
