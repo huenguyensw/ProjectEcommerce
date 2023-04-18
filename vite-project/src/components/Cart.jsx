@@ -94,7 +94,7 @@ const CartWrapper = styled(motion.div)`
   top: ${props => props.popup ? '65px' : 'unset'};
   right: ${props => props.popup ? '24px' : 'unset'};
   width: ${props => props.popup ? '400px' : 'unset'};
-  border: 1px solid rgb(246, 230, 211);
+  border: 1px solid skyblue;
   background-color: ${props => props.popup ? 'white' : 'unset'};
   display: grid;
   flex-direction: column;
@@ -106,7 +106,7 @@ const CartWrapper = styled(motion.div)`
 
 const ShoppingItem = styled.li`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   column-gap: 10px;
   padding:0;
   align-items:center;

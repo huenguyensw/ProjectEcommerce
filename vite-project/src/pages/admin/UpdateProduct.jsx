@@ -18,6 +18,7 @@ const UpdateProduct = () => {
   const URL = 'https://db.up.railway.app/'
   const [src, setSrc] = useState({})
 
+
   // Use useEffect to fetch the product on mount
   useEffect(() => {
     fetchProduct();
@@ -35,7 +36,7 @@ const UpdateProduct = () => {
       const data = await response.json();
       setProduct(data);
       console.log(data);
-      setSrc(`${URL}uploads/${encodeURI(data.image)}`)
+      setSrc(`${URL}uploads/${encodeURI(data.image)}`);
     } catch (error) {
       console.log(error);
     }
@@ -53,26 +54,7 @@ const UpdateProduct = () => {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   await fetch("https://db.up.railway.app/products/" + id, {
-    //     method: "PUT",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       image: product.image,
-    //       title: product.title,
-    //       price: product.price,
-    //       description: product.description,
-    //       quantityOfProducts: product.quantityOfProducts
-    //     }),
-    //   });
-
-    //   // Navigate to the manage-products page after successful submission
-    //   navigate("/admin/manage-products");
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    
     var formData = new FormData();
     formData.append('productImage', file);
     formData.append('title', product.title);
@@ -103,6 +85,7 @@ const UpdateProduct = () => {
       });
       setSrc(reader.result)
     };
+    console.log(event.target.files[0])
   };
 
   // Render the component
