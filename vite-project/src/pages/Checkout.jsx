@@ -106,7 +106,8 @@ background-color: orange;
   border-radius: 4px;
   margin-top: 10px;
   width: 100%;
-  height: 28px;
+  height: 1.6rem;
+  cursor: pointer;
 `
 const ShippingSection = styled.section`
   grid-area: shipping;
@@ -163,6 +164,6 @@ border-radius: 4px;
 height: 1.6rem;
 border: 1px solid orange;
 background-color: orange;
-
+cursor: pointer;
 `;
 export default Checkout

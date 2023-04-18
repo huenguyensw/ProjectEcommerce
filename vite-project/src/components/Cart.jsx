@@ -77,10 +77,9 @@ const Cart = ({handleRemoveItem, popup}) => {
       </ul>
       <p style={{ textAlign: 'center' }}><b>Total price: {totalPrice} kr</b></p>
       <ShoppingCartBtn popup={popup}>
-        <button onClick={handleResetCart}>Reset Cart</button>
+        <ResetCartBtn onClick={handleResetCart}>Reset Cart</ResetCartBtn>
         <Link to={'/checkout'} onClick={()=>setToggle(false)}>Proceed to Checkout</Link>
       </ShoppingCartBtn>
-
 
     </CartWrapper>
   )
@@ -92,7 +91,7 @@ const CartWrapper = styled.div`
   right: ${props => props.popup ? '39px' : 'unset'};
   width: ${props => props.popup ? '400px' : 'unset'};
   border: 1px solid rgb(246, 230, 211);
-  background-color: ${props => props.popup ? 'rgb(251, 233, 211)' : 'unset'};
+  background-color: ${props => props.popup ? 'white' : 'unset'};
   display: grid;
   flex-direction: column;
   justify-content: space-between;
@@ -113,4 +112,19 @@ const ShoppingCartBtn = styled.section`
   justify-content: ${props => props.popup ? 'space-around' : 'none'};
   padding-bottom: ${props => props.popup ? '10px' : 'none'};
 `;
+
+const ResetCartBtn = styled.button`
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0px 0px 1.5px;
+  padding: 3px;
+  background-color: white;
+  border-radius: 3px;
+  border: none;
+
+  &:hover {
+    background-color: rgb(103, 163, 186);
+    color: white;
+  }
+  `
 export default Cart
