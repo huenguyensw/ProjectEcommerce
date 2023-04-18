@@ -52,7 +52,11 @@ const Cart = ({handleRemoveItem, popup}) => {
 
 
   return (
-    <CartWrapper popup={popup}>
+    <CartWrapper  
+    initial={{ opacity: 0, scale: 0.5 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5 }} 
+    popup={popup}>
       <ul>
         {lineItems.map((order) =>
           <ShoppingItem key= {order.product._id}>
@@ -85,7 +89,7 @@ const Cart = ({handleRemoveItem, popup}) => {
   )
 }
 
-const CartWrapper = styled.div`
+const CartWrapper = styled(motion.div)`
   position: ${props => props.popup ? 'absolute' : 'unset'};
   top: ${props => props.popup ? '65px' : 'unset'};
   right: ${props => props.popup ? '39px' : 'unset'};
