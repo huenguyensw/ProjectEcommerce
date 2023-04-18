@@ -35,6 +35,10 @@ const BodyPage = styled.div`
   background-color: rgb(192, 226, 239);
   font-family: arial;
   min-height: 100vh;
+  width: 100vw;
+  margin-left: -8px;
+  margin-top: -8px;
+  margin-bottom: -8px;
 `
 
 export default Root

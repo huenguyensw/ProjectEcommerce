@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import Product from '../pages/Product';
-import { dark } from '@material-ui/core/styles/createPalette';
 
 const ProductItem = ({product, URL, handleClick, isSingleView}) => {
     const endpoint = encodeURI(product.image);
@@ -16,15 +14,14 @@ const ProductItem = ({product, URL, handleClick, isSingleView}) => {
         : setQuantity(quantity)
     }
 
-    
-    
   return (
-    <>
+    <ProductContainer className={isSingleView ? 'single-view' : ''}>
       <ProductImage className={isSingleView ? 'single-view' : ''}src={`${URL}/uploads/${endpoint}`}></ProductImage>
-      <ProductInfo className={isSingleView ? 'single-view' : ''}><h1>{product.title}</h1>
-      <h2>{product.price} kr</h2>
+      <ProductInfo className={isSingleView ? 'single-view' : ''}>
+        <Title className={isSingleView ? 'single-view' : ''}>{product.title}</Title>
+      <Price>{product.price} kr</Price>
       <StockValue className={product.quantity>0?'':'out-of-stock'}>{product.quantity>0?'In stock':'Out of stock'}</StockValue>
-      <br/>
+      <ProductDescription className={isSingleView ? 'single-view' : ''}>{product.description}</ProductDescription>
       <ReadMoreLink className={isSingleView ? 'single-view' : ''} to={"/products/"+`${product._id}`}>Read more...</ReadMoreLink>
       <br/><br/>
       <QuantityInput className={isSingleView ? 'single-view' : ''}type='text' readOnly value={quantity}></QuantityInput>
@@ -33,12 +30,40 @@ const ProductItem = ({product, URL, handleClick, isSingleView}) => {
       <br/>
       <AddToCart onClick={()=>handleClick(product,quantity)} className={isSingleView ? 'single-view' : ''}>Add to cart</AddToCart><FavouriteButton>&#x2764;</FavouriteButton>
       </ProductInfo>
-      </>
+      </ProductContainer>
   )
 }
 
 const lightColor = 'rgb(123, 172, 191)'
 const darkColor = 'rgb(103, 163, 186)'
+
+const Title = styled.h1`
+  font-size: 20pt;
+  margin-bottom: -16px;
+  font-weight: lighter;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 200px;
+
+  &.single-view {
+    width: 100%;
+  }
+`;
+
+const Price = styled.h2`
+  font-size: 20pt;
+  margin-bottom: -10px;
+`;
+
+
+const ProductContainer = styled.div`
+  &.single-view {
+    display: flex;
+    background-color: white;
+    padding: 30px;
+  }
+`;
 
 const StockValue = styled.p`
   color: black;
@@ -53,8 +78,15 @@ const ProductInfo = styled.div`
   display: inline-block;
   padding-left: 50px;
   vertical-align: top;
-
 }
+`;
+
+const ProductDescription = styled.div`
+  display: none;
+
+  &.single-view {
+    display: block;
+  }
 `;
 
 const QuantityButton = styled.button`
@@ -133,8 +165,6 @@ const ProductImage = styled.img`
   &.single-view {
     height: 500px;
     width: 500px;
-    margin-right: 50px;
-    margin-left: 50px;
   }
 `;
 

@@ -4,6 +4,7 @@ import usefetchAllRecords from './usefetchAllRecords'
 import { useOutletContext } from 'react-router-dom'
 import Cart from '../components/Cart'
 import styled from 'styled-components'
+import ScrollToTop from '../components/ScrollToTop';
 
 
 
@@ -47,7 +48,7 @@ const Products = () => {
   }
   return (
     <ProductContainer>
-
+      <ScrollToTop />
     {isLoading
     ? <h1>Loading...</h1>
     :isError
@@ -69,7 +70,7 @@ const ProductList = styled.div`
   display: flex;
   flex-direction: column;
   width: 250px;
-  padding: 10px;
+  padding: 7px;
   border: 1px solid white;
   background-color: white;
   align-items: center;
@@ -78,10 +79,13 @@ const ProductList = styled.div`
 
 const ProductContainer = styled.div`
   display: flex;
+  background-color: white;
   flex-direction: row;
   flex-wrap: wrap;
-  row-gap: 20px;
-  column-gap:20px;
+  row-gap: 10px;
+  padding-left: 15px;
+  justify-content: start;
+  column-gap:5px;
   padding: 30px;
 `;
 

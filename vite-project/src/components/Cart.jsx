@@ -52,21 +52,25 @@ const Cart = ({handleRemoveItem, popup}) => {
 
 
   return (
-    <CartWrapper popup={popup}>
+    <CartWrapper  
+    initial={{ opacity: 0, scale: 0.5 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5 }} 
+    popup={popup}>
       <ul>
         {lineItems.map((order) =>
           <ShoppingItem key= {order.product._id}>
             <img src={`${URL}/uploads/${order.product.image}`} width='20px' height='20px'></img>
             <p>{order.product.title}</p>
 
-            <section className='changeQuantity'>
+            <ChangeQuantityBtn popup={popup}>
               <Button onClick={() => handleIncrement(order)}>
                 <AddIcon />
               </Button>
               <Button onClick={() => handleDecrement(order)}>
                 <RemoveIcon />
               </Button>
-            </section>
+            </ChangeQuantityBtn>
 
             <p>{order.quantity}x{order.product.price} kr</p>
             <Button onClick={() => handleRemoveItem(order)}>
@@ -85,10 +89,10 @@ const Cart = ({handleRemoveItem, popup}) => {
   )
 }
 
-const CartWrapper = styled.div`
+const CartWrapper = styled(motion.div)`
   position: ${props => props.popup ? 'absolute' : 'unset'};
   top: ${props => props.popup ? '65px' : 'unset'};
-  right: ${props => props.popup ? '39px' : 'unset'};
+  right: ${props => props.popup ? '24px' : 'unset'};
   width: ${props => props.popup ? '400px' : 'unset'};
   border: 1px solid rgb(246, 230, 211);
   background-color: ${props => props.popup ? 'white' : 'unset'};
@@ -102,7 +106,8 @@ const CartWrapper = styled.div`
 
 const ShoppingItem = styled.li`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 10px;
   padding:0;
   align-items:center;
 `;
@@ -126,5 +131,8 @@ const ResetCartBtn = styled.button`
     background-color: rgb(103, 163, 186);
     color: white;
   }
+  `
+  const ChangeQuantityBtn = styled.section`
+  display: ${props => props.popup ? 'none' : 'inline'};
   `
 export default Cart
