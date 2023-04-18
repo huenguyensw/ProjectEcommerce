@@ -57,7 +57,7 @@ const Products = () => {
       
       {(lineItems.length >0 && toggle === true) 
         && <Cart popup={true}  handleRemoveItem={handleRemoveItem} />}
-    </div>
+    </ProductContainer>
   )
 }
 
