@@ -4,6 +4,7 @@ import usefetchAllRecords from './usefetchAllRecords'
 import { useOutletContext } from 'react-router-dom'
 import Cart from '../components/Cart'
 import styled from 'styled-components'
+import ScrollToTop from '../components/ScrollToTop';
 
 
 
@@ -47,6 +48,7 @@ const Products = () => {
   }
   return (
     <ProductContainer>
+      <ScrollToTop />
     {isLoading
     ? <h1>Loading...</h1>
     :isError
