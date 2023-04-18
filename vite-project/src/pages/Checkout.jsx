@@ -13,64 +13,77 @@ const Checkout = () => {
     }
 
     return (
-        <div className='checkout'>
+        <CheckoutPage>
             <OrdersSection>
                 <h3>Products</h3>
-                <LineBreak/>
+                <LineBreak />
                 {lineItems.length > 0
                     ? <Cart handleRemoveItem={handleRemoveItem} />
                     : <h1>Shopping cart is empty, <Link to={"/"}>start shopping!</Link></h1>}
             </OrdersSection>
             <NewsSection>
                 <h3>Newsletter</h3>
-                <LineBreak/>
+                <LineBreak />
                 <SecondInput type='text'></SecondInput>
                 <SubscribeBtn>Subscribe</SubscribeBtn>
             </NewsSection>
-            <ShippingSection>
+            <div>
                 <h3>Shipping address</h3>
-                <LineBreak/>
-                <label >
+                <LineBreak />
+                <ShippingSection>
+                <FirstName >
                     First name
                     <br />
                     <PrimaryInput type='text'></PrimaryInput>
-                </label>
-                <label>
+                </FirstName>
+                <LastName>
                     Last name
                     <br />
                     <PrimaryInput type='text'></PrimaryInput>
-                </label>
-                <label>
+                </LastName>
+                <Email>
                     Email
                     <br />
                     <PrimaryInput type='text'></PrimaryInput>
-                </label>
-                <label>
+                </Email>
+                <Password>
                     Password
                     <br />
                     <PrimaryInput type='text'></PrimaryInput>
-                </label>
-                <label>
+                </Password>
+                <Country>
                     Country
                     <br />
-                    <select>
+                    <SelectField>
                         <option value='Sweden'>Sweden</option>
                         <option value='Finland'>Finland</option>
                         <option value='Denmark'>Denmark</option>
                         <option value='Norway'>Norway</option>
-                    </select>
-                </label>
-                <label>
+                    </SelectField>
+                </Country>
+                <Comment>
                     Comment
                     <br />
-                    <textarea></textarea>
-                </label>
-                <button>Proceed to payment</button>
-            </ShippingSection>
+                    <TextArea></TextArea>
+                </Comment>
+                </ShippingSection>
+                <PrimaryButton>Proceed to payment</PrimaryButton>
+                
+            </div>
 
-        </div>
+        </CheckoutPage>
     )
 }
+
+const CheckoutPage = styled.div`
+  display: grid;
+  grid-template-columns: 3.5fr 1.3fr;
+  grid-template-areas: 
+  'orders news'
+  'shipping news';
+  line-height: 1rem;
+  margin: 40px 50px;
+`
 
 const OrdersSection = styled.div`
     grid-area: orders;
@@ -96,14 +109,60 @@ background-color: orange;
   height: 28px;
 `
 const ShippingSection = styled.section`
-grid-area: shipping;
+  grid-area: shipping;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  border: 1px solid rgb(246, 230, 211);
+  border-radius: 4px;
+  grid-template-areas: 'First Last'
+  'Email Password'
+  'Country Country'
+  'Comment Comment'
+  ;
+  row-gap: 15px;
+  padding: 15px 5px;
 `
+const FirstName = styled.label`
+grid-area: First;`
+
+const LastName = styled.label`
+grid-area: Last;`
+
+const Email = styled.label`
+grid-area: Email;`
+
+const Password = styled.label`
+grid-area: Password;`
+
+const Country = styled.label`
+grid-area: Country;`
+
+const Comment = styled.label`
+grid-area: Comment;`
+
 const PrimaryInput = styled.input`
-grid-column: 1fr 2fr;
+width: 95%;
+margin: auto;
+border-radius: 4px;
+border: 1px solid;
+height: 1.3rem;
 `
+const SelectField = styled.select`
+width: 98%;
+height: 1.3rem`
+const TextArea = styled.textarea`
+width: 97%;
+height: 3rem;`
 const LineBreak = styled.hr`
 height: 1.4px;
 `
+const PrimaryButton = styled.button`
+width: 100%;
+margin-top: 20px;
+border-radius: 4px;
+height: 1.6rem;
+border: 1px solid orange;
+background-color: orange;
+
+`;
 export default Checkout

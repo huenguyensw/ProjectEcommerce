@@ -90,22 +90,22 @@ const CartWrapper = styled.div`
   position: ${props => props.popup ? 'absolute' : 'unset'};
   top: ${props => props.popup ? '65px' : 'unset'};
   right: ${props => props.popup ? '39px' : 'unset'};
+  width: ${props => props.popup ? '400px' : 'unset'};
   border: 1px solid rgb(246, 230, 211);
   background-color: ${props => props.popup ? 'rgb(251, 233, 211)' : 'unset'};
   display: grid;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 4px;
+  grid-template-columns: 1fr;
+  
 `;
 
 const ShoppingItem = styled.li`
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding:0;
   align-items:center;
-  gap: 10px;
-  padding: 0 10px;
-  justify-items:center;
-  justify-content:space-between;
 `;
 const ShoppingCartBtn = styled.section`
   display: ${props => props.popup ? 'flex' : 'none'};
