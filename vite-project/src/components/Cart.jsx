@@ -63,14 +63,14 @@ const Cart = ({handleRemoveItem, popup}) => {
             <img src={`${URL}/uploads/${order.product.image}`} width='20px' height='20px'></img>
             <p>{order.product.title}</p>
 
-            <section className='changeQuantity'>
+            <ChangeQuantityBtn popup={popup}>
               <Button onClick={() => handleIncrement(order)}>
                 <AddIcon />
               </Button>
               <Button onClick={() => handleDecrement(order)}>
                 <RemoveIcon />
               </Button>
-            </section>
+            </ChangeQuantityBtn>
 
             <p>{order.quantity}x{order.product.price} kr</p>
             <Button onClick={() => handleRemoveItem(order)}>
@@ -106,7 +106,8 @@ const CartWrapper = styled(motion.div)`
 
 const ShoppingItem = styled.li`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 10px;
   padding:0;
   align-items:center;
 `;
@@ -130,5 +131,8 @@ const ResetCartBtn = styled.button`
     background-color: rgb(103, 163, 186);
     color: white;
   }
+  `
+  const ChangeQuantityBtn = styled.section`
+  display: ${props => props.popup ? 'none' : 'inline'};
   `
 export default Cart
