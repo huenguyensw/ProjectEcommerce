@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import Product from '../pages/Product';
+import { dark } from '@material-ui/core/styles/createPalette';
 
-const ProductItem = ({product, URL, handleClick}) => {
+const ProductItem = ({product, URL, handleClick, isSingleView}) => {
     const endpoint = encodeURI(product.image);
     const [quantity, setQuantity] = useState(1)
     
@@ -17,21 +20,132 @@ const ProductItem = ({product, URL, handleClick}) => {
     
   return (
     <>
-      <img src={`${URL}/uploads/${endpoint}`}></img>
-      <div className="product-single-info"><h1>{product.title}</h1>
+      <ProductImage className={isSingleView ? 'single-view' : ''}src={`${URL}/uploads/${endpoint}`}></ProductImage>
+      <ProductInfo className={isSingleView ? 'single-view' : ''}><h1>{product.title}</h1>
       <h2>{product.price} kr</h2>
-      <p className={product.quantity>0?'':'out-of-stock'}>{product.quantity>0?'In stock':'Out of stock'}</p>
+      <StockValue className={product.quantity>0?'':'out-of-stock'}>{product.quantity>0?'In stock':'Out of stock'}</StockValue>
       <br/>
-      <div className="read-more-link"><Link to={"/products/"+`${product._id}`}>Read more...</Link></div>
+      <ReadMoreLink className={isSingleView ? 'single-view' : ''} to={"/products/"+`${product._id}`}>Read more...</ReadMoreLink>
+      <br/><br/>
+      <QuantityInput className={isSingleView ? 'single-view' : ''}type='text' readOnly value={quantity}></QuantityInput>
+      <QuantityButton className={isSingleView ? 'single-view' : ''}onClick={increment}>+</QuantityButton>
+      <QuantityButton className={isSingleView ? 'single-view decrement' : 'decrement'} onClick={decrement}>-</QuantityButton>
       <br/>
-      <input id='quantity-input' type='text' readOnly value={quantity}></input>
-      <button className='quantity-button' onClick={increment}>+</button>
-      <button className='quantity-button decrement-button' onClick={decrement}>-</button>
-      <br/>
-      <button onClick={()=>handleClick(product,quantity)} className="add-to-cart-button">Add to cart</button><button id="favourite">&#x2764;</button>
-      </div>
+      <AddToCart onClick={()=>handleClick(product,quantity)} className={isSingleView ? 'single-view' : ''}>Add to cart</AddToCart><FavouriteButton>&#x2764;</FavouriteButton>
+      </ProductInfo>
       </>
   )
 }
+
+const lightColor = 'skyblue'
+const darkColor = 'rgb(47, 177, 229)'
+
+const StockValue = styled.p`
+  color: black;
+
+  &.out-of-stock {
+    color: red;
+  }
+`;
+
+const ProductInfo = styled.div`
+&.single-view {
+  display: inline-block;
+  padding-left: 50px;
+  vertical-align: top;
+
+}
+`;
+
+const QuantityButton = styled.button`
+  width: 30px;
+  height: 34px;
+  border: none;
+  color: white;
+  background-color: ${darkColor};
+  text-decoration: none;
+
+  &:hover {
+    background-color: ${lightColor};
+  }
+
+  &.decrement {
+    border-radius: 0px 5px 5px 0px;
+  }
+
+  &.single-view {
+    height: 54px;
+    width: 50px;
+  }
+`;
+
+const QuantityInput = styled.input`
+  width: 30px;
+  text-align: center;
+  height: 30px;
+  border: 1px solid ${darkColor};
+  border-radius: 5px 0px 0px 5px;
+
+  &.single-view {
+    width: 50px;
+    height: 50px;
+  }
+`;
+
+const FavouriteButton = styled.button`
+  border: 1px solid ${darkColor};
+  color: ${darkColor};
+  background-color: ${lightColor};
+  border-radius: 15px;
+  font-size: 15pt;
+  padding: 5px;
+  margin: 10px;
+`;
+
+const AddToCart = styled.button`
+  width: 150px;
+  height: 30px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: ${darkColor};
+  text-decoration: none;
+
+  &:hover {
+    background-color: ${lightColor};
+  }
+
+  &.single-view {
+    width: 160px;
+    height: 40px;
+  }
+`;
+
+const ProductImage = styled.img`
+  height: 200px;
+  width: 200px;
+
+  &.single-view {
+    height: 500px;
+    width: 500px;
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+`;
+
+const ReadMoreLink = styled(Link)`
+  color: ${darkColor};
+  text-decoration: none;
+
+  &:hover {
+    color: ${lightColor};
+  }
+
+  &.single-view {
+    display: none;
+  }
+`;
+
 
 export default ProductItem
