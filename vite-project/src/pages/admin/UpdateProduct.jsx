@@ -228,7 +228,6 @@ const UpdateProduct = () => {
     align-items: center;
     padding: 10px;
     
-  
     input[type="file"] {
       margin-top: 10px;
       padding: 5px;
