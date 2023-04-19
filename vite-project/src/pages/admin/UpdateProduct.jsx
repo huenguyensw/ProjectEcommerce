@@ -38,26 +38,48 @@ const UpdateProduct = () => {
         throw new Error('Error fetching product. Please try again later.');
       }
       const data = await response.json();
+      if (!data || Object.keys(data).length === 0) {
+        throw new Error('Error fetching product data. Please try again later.');
+      }
       setProduct(data);
-      console.log(data);
-      setSrc(`${URL}uploads/${encodeURI(data?.image)}`);
+      setSrc(`${URL}uploads/${encodeURI(data?.image) || 'default-image.png'}`);
     } catch (error) {
       console.log(error);
       // display an error message to the user
-      alert('Error fetching product. Please try again later.');
+      alert(error.message);
       navigate("/admin/manage-products");
     }
   };
   
   
+  
   // Function to handle changes in the form fields
   const handleChange = (e) => {
     e.preventDefault();
+    const { name, value } = e.target;
+    switch (name) {
+      case 'price':
+        if (isNaN(value) || Number(value) < 0) {
+          alert('Price must be a positive number.');
+          return;
+        }
+        break;
+      case 'quantity':
+        if (isNaN(value) || Number(value) < 0) {
+          alert('Quantity must be a positive number.');
+          return;
+        }
+        break;
+      default:
+        break;
+    }
     setProduct({
       ...product,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
+  
+  
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
