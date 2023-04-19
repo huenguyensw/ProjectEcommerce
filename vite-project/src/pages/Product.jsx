@@ -1,20 +1,20 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import usefetchOneRecord from './usefetchOneRecord'
 import { useParams } from 'react-router-dom'
 import ProductItem from '../components/ProductItem';
 import { useOutletContext } from "react-router-dom";
 import Cart from '../components/Cart'
-import styled from 'styled-components'
 
 const Product = () => {
   const Params = useParams();
-  console.log(Params.id)
   const intervalRef = useRef(null);
   const URL = 'https://db.up.railway.app'
   const { data: product, isLoading, isError } = usefetchOneRecord('https://db.up.railway.app/products/' + Params.id)
 
   const { lineItems, setLineItems, totalPrice, setTotalPrice, toggle, setToggle, setIsDisplayCart} = useOutletContext();
 
+  // if product existed then only increase amount of products and update total price
+// else  if product does not exist, add product to list LineItems, update total price as well.
   const handleClick = (product, amount) => {
     setToggle(true);
     let isExist = lineItems.some(element => element.product._id == product._id)
@@ -24,7 +24,6 @@ const Product = () => {
     } else {
       setLineItems(lineItems.map((order) => {
         if (order.product._id === product._id) {
-          console.log('exist')
           setTotalPrice(totalPrice + order.product.price * amount)
           return { ...order, quantity: order.quantity + amount }
         } else {
@@ -38,6 +37,7 @@ const Product = () => {
       setToggle(false)
     }, 3000)
 
+    //show cart on Product page
     setIsDisplayCart(true);
   }
 

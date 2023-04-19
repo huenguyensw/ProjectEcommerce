@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from "@material-ui/core/Button";
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from "@material-ui/icons/Add";
@@ -14,8 +14,7 @@ const Cart = ({handleRemoveItem, popup}) => {
   const URL = 'https://db.up.railway.app'
   const {lineItems, setLineItems, totalPrice, setToggle, setTotalPrice,handleResetCart} = useOutletContext();
 
-  //lineItems is an array of objects
-  // each object include 2 properties: product and quantity
+  
   const handleIncrement = (product) => {
     console.log(product.product._id)
     console.log(product)
