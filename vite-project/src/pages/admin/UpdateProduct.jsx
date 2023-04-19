@@ -34,15 +34,24 @@ const UpdateProduct = () => {
   const fetchProduct = async () => {
     try {
       const response = await fetch(URL + 'products/' + id);
+      if (!response.ok) {
+        throw new Error('Error fetching product. Please try again later.');
+      }
       const data = await response.json();
+      if (!data || Object.keys(data).length === 0) {
+        throw new Error('Error fetching product data. Please try again later.');
+      }
       setProduct(data);
-      console.log(data);
-      setSrc(`${URL}uploads/${encodeURI(data?.image)}`);
+      setSrc(`${URL}uploads/${encodeURI(data.image)}`);
     } catch (error) {
       console.log(error);
+      // display an error message to the user
+      navigate("/admin/manage-products");
     }
   };
-
+  
+  
+  
   // Function to handle changes in the form fields
   const handleChange = (e) => {
     e.preventDefault();
@@ -51,34 +60,48 @@ const UpdateProduct = () => {
       [e.target.name]: e.target.value,
     });
   };
+  
+  
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     var formData = new FormData();
     formData.append('productImage', file);
     formData.append('title', product.title);
     formData.append('description', product.description);
     formData.append('price', product.price);
     formData.append('quantity', product.quantity);
-
+    
     const config = {
       headers: {
         "Content-Type": "multipart/form-data"
       }
     }
-    const res = await axios.patch(URL + 'products/' + id, formData, config);
-    navigate("/admin/manage-products");
-    console.log(res);
-    console.log(formData)
+    
+    try {
+      const res = await axios.patch(URL + 'products/' + id, formData, config);
+      if (res.status === 200) {
+        navigate("/admin/manage-products");
+      } else {
+        throw new Error('Error updating product. Please try again later.');
+      }
+      console.log(res);
+      console.log(formData)
+    } catch (error) {
+      console.log(error);
+      // display an error message to the user
+      alert('Error updating product. Please try again later.');
+    }
   };
-
+  
   // Function to handle uploading files
   const handleFiles = (event) => {
     setFile(event.target.files[0])
+    const file = event.target.files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
+    reader.readAsDataURL(file);
     reader.onload = () => {
       setProduct({
         ...product,
@@ -86,9 +109,12 @@ const UpdateProduct = () => {
       });
       setSrc(reader.result)
     };
-    console.log(event.target.files[0])
+    reader.onerror = () => {
+      // handle error
+      alert('Error reading file.');
+    };
   };
-
+  
   // Render the component
   return (
 
@@ -108,12 +134,12 @@ const UpdateProduct = () => {
 
         <InputLabel>
           Title:
-          <input type="text" name="title" value={product.title || ""} onChange={handleChange} />
+          <input type="text" name="title" value={product.title || ""} onChange={handleChange} required/>
         </InputLabel>
 
         <InputLabel>
           Price:
-          <input type="text" name="price" value={product.price || ""} onChange={handleChange} />
+          <input type="text" name="price" value={product.price || ""} onChange={handleChange} required />
         </InputLabel>
 
         <InputLabel>
@@ -124,7 +150,7 @@ const UpdateProduct = () => {
 
         <InputLabel>
           Quantity:
-          <input type="text" name="quantity" value={product.quantity} onChange={handleChange} />
+          <input type="text" name="quantity" value={product.quantity} onChange={handleChange} required />
         </InputLabel>
 
         {/* Add a link to navigate back to the manage-products page */}
