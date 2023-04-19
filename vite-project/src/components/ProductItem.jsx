@@ -59,6 +59,7 @@ const Price = styled.h2`
 
 const ProductContainer = styled.div`
   flex-grow: 1;
+  
   &.single-view {
     display: flex;
     background-color: white;

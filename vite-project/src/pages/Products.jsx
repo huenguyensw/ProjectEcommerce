@@ -76,7 +76,6 @@ const ProductList = styled.div`
   display: flex;
   flex-direction: column;
   width: 250px;
-  padding: 7px;
   border: 1px solid white;
   background-color: white;
   align-items: center;
@@ -92,7 +91,7 @@ const ProductContainer = styled.div`
   row-gap: 10px;
   justify-content: space-evenly;
   column-gap:15px;
-  padding: 30px;
+  padding: 20px;
   @media (max-width: ${props => props.totalWidth}px) {
     justify-content: flex-start;
     column-gap: 30px;
