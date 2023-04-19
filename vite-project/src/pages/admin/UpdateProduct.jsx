@@ -1,3 +1,4 @@
+import { CenterFocusStrong, FormatAlignCenter } from "@material-ui/icons";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
@@ -122,6 +123,7 @@ const UpdateProduct = () => {
 
         <InputLabel>
           Description:
+          <br />
           <textarea name="description" value={product.description || ""} onChange={handleChange} />
         </InputLabel>
 
@@ -147,19 +149,19 @@ const UpdateProduct = () => {
     };
     
     const UpdateWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
+    display: block;
     width: 50%;
     height: 60%;
     border-radius: 10px;
-    padding: 10px;
+    padding: 100px;
     border: 1px solid #e5e5e5;
-    background-color: #f5f5f5;
+    background-color: #F2E5D9;
     align-items: center;
     text-align: center;
-    margin: 10px;
+    margin: 40px;
     justify-content: space-between;
   `;
+
   const StyleInputs = styled.form`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -167,21 +169,34 @@ const UpdateProduct = () => {
   padding: 5px;
   margin: 5px;
   line-height: 1.5;
-  align-items: left;
+  align-items: center;
   text-align: left;
 `;
 
   const InputLabel = styled.label`
-    display: block;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     margin-bottom: 5px;
     line-height: 1.5;
-    align-items: right;
     padding: 5px;
-
+    align-items: center;
+    
     textarea[name="description"] {
       padding:5px;
       margin:5px;
       align-items: center;
+      height: 3.5rem;
+      width: 400px;
+      border radius:10px;
+    }
+    
+    input[type="text"] {
+      padding:5px;
+      margin:5px;
+      align-items: center;
+      height: 2.0rem;
+      width: 300px;
+      border radius:10px;
     }
   `;
 
@@ -189,10 +204,9 @@ const UpdateProduct = () => {
     font-size: 1em;
     margin: 20px;
     padding: 10px;
-    border: 2px solid palevioletred;
     border-radius: 5px;
-    color: white;
-    background-color: palevioletred;
+    color: black;
+    background-color: rgb(172, 226, 239);
     align-items: center;
   `;
   
@@ -210,13 +224,15 @@ const UpdateProduct = () => {
   `;
   
   const Image = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     align-items: center;
+    padding: 10px;
+    
   
     input[type="file"] {
       margin-top: 10px;
+      padding: 5px;
+     
     }
   `;
     
