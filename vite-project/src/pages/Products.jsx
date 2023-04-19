@@ -46,8 +46,11 @@ const Products = () => {
     setLineItems(lineItems => lineItems.filter((i)=>i.product._id != item.product._id));
     setTotalPrice(totalPrice - item.product.price*item.quantity)
   }
+
+  const totalWidth = products.length*267;
+  console.log(totalWidth);
   return (
-    <ProductContainer>
+    <ProductContainer totalWidth={totalWidth}>
       <ScrollToTop />
     {isLoading
     ? <h1>Loading...</h1>
@@ -83,10 +86,13 @@ const ProductContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   row-gap: 10px;
-  padding-left: 15px;
-  justify-content: start;
-  column-gap:5px;
+  justify-content: space-evenly;
+  column-gap:15px;
   padding: 30px;
+  @media (max-width: ${props => props.totalWidth}px) {
+    justify-content: flex-start;
+    column-gap: 30px;
+  }
 `;
 
 
