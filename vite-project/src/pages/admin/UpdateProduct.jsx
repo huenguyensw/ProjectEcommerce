@@ -1,15 +1,14 @@
-import { CenterFocusStrong, FormatAlignCenter } from "@material-ui/icons";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
-import styled from "styled-components";
+import { ProductWrapper, StyleInputs,Image,InputLabel,Button} from '../../styling';
 
 const UpdateProduct = () => {
   // Set up state for the product
   const [product, setProduct] = useState({});
   const [file, setFile] = useState({});
-  const {setIsDisplayCart} = useOutletContext();
+  const { setIsDisplayCart } = useOutletContext();
 
   // Get the navigate function from react-router
   const navigate = useNavigate();
@@ -56,7 +55,7 @@ const UpdateProduct = () => {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     var formData = new FormData();
     formData.append('productImage', file);
     formData.append('title', product.title);
@@ -69,7 +68,7 @@ const UpdateProduct = () => {
         "Content-Type": "multipart/form-data"
       }
     }
-    const res = await axios.patch(URL+'products/'+id,formData,config);
+    const res = await axios.patch(URL + 'products/' + id, formData, config);
     navigate("/admin/manage-products");
     console.log(res);
     console.log(formData)
@@ -92,12 +91,10 @@ const UpdateProduct = () => {
 
   // Render the component
   return (
-        <UpdateWrapper>
-  <div id="page">
-    <h1>Update Products</h1>
 
-    <StyleInputs>
-      <form onSubmit={handleSubmit}>
+    <ProductWrapper>
+      <h1>Update Products</h1>
+      <StyleInputs onSubmit={handleSubmit}>
         {/* Render the product fields in the input elements */}
         {product.image == '' || product.image == null ? (
           ''
@@ -105,10 +102,8 @@ const UpdateProduct = () => {
           <img src={src} width={250} height={250} />
         )}
         <Image>
-          <label>
             Upload Image:
             <input type="file" name="productImage" onChange={handleFiles} />
-          </label>
         </Image>
 
         <InputLabel>
@@ -133,106 +128,21 @@ const UpdateProduct = () => {
         </InputLabel>
 
         {/* Add a link to navigate back to the manage-products page */}
-        <Backlink>
+        <section>
+          
           <Link to="/admin/manage-products">&#8592; Back</Link>
-        </Backlink>
+          
+          {/* Add a button to submit the form */}
+          <Button type="submit">Update</Button>
+        </section>
 
-        {/* Add a button to submit the form */}
-        <Button type="submit">Update</Button>
-      </form>
+
       </StyleInputs>
-    
-  </div>
-</UpdateWrapper>
 
-      );
-    };
-    
-    const UpdateWrapper = styled.div`
-    display: block;
-    width: 50%;
-    height: 60%;
-    border-radius: 10px;
-    padding: 100px;
-    border: 1px solid #e5e5e5;
-    background-color: #F2E5D9;
-    align-items: center;
-    text-align: center;
-    margin: 40px;
-    justify-content: space-between;
-  `;
+    </ProductWrapper>
 
-  const StyleInputs = styled.form`
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-gap: 10px;
-  padding: 5px;
-  margin: 5px;
-  line-height: 1.5;
-  align-items: center;
-  text-align: left;
-`;
+  );
+};
 
-  const InputLabel = styled.label`
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    margin-bottom: 5px;
-    line-height: 1.5;
-    padding: 5px;
-    align-items: center;
-    
-    textarea[name="description"] {
-      padding:5px;
-      margin:5px;
-      align-items: center;
-      height: 3.5rem;
-      width: 400px;
-      border radius:10px;
-    }
-    
-    input[type="text"] {
-      padding:5px;
-      margin:5px;
-      align-items: center;
-      height: 2.0rem;
-      width: 300px;
-      border radius:10px;
-    }
-  `;
 
-  const Button = styled.button`
-    font-size: 1em;
-    margin: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    color: black;
-    background-color: rgb(172, 226, 239);
-    align-items: center;
-  `;
-  
-  const Backlink = styled(Link)`
-    font-size: 1em;
-    margin-top: 20px;
-    padding: 5px;
-    color: palevioletred;
-    text-decoration: none;
-    align-items: center;
-  
-    &:hover {
-      text-decoration: underline;
-    }
-  `;
-  
-  const Image = styled.div`
-    margin-bottom: 30px;
-    align-items: center;
-    padding: 10px;
-    
-    input[type="file"] {
-      margin-top: 10px;
-      padding: 5px;
-     
-    }
-  `;
-    
 export default UpdateProduct;
