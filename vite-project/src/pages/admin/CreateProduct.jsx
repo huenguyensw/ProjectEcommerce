@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import  {motion} from 'framer-motion'
+import { useOutletContext } from 'react-router-dom';
 
 
 const CreateProduct = () => {
@@ -8,6 +10,7 @@ const CreateProduct = () => {
   const [inputs, setInputs] = useState({})
   const URL = 'https://db.up.railway.app/products'
   const navigate = useNavigate();
+  const {setIsDisplayCart} = useOutletContext();
   
   const  [image,setImage] = useState('');
 
@@ -55,15 +58,23 @@ const CreateProduct = () => {
   }
 
 
+  //hide Cart icon
+  setIsDisplayCart(false);
+
   return (
+    <>
+    <motion.h1  animate={{ x: 100 }} className='title-addProduct'>Create Product</motion.h1>
     <form className='product-form' onSubmit={handleSubmit}>
       <section className='product-form-photo'>
-      {image==''||image==null?"":<img src={image} width={250} height={250} alt='product-image'></img>}
+      {image==''||image==null
+      ? ""
+      : <img src={image} width={250} height={250} alt='product-image'></img>}
       <br/>
         <label>
           Upload Image:
           <br/>
-          <input type="file" name='productImage' onChange={handleFiles} required />
+          <input type="file" name='productImage' onChange={handleFiles} />
+          <Link to="/admin/manage-products">&#8592; Back</Link>
         </label>
       </section>
       <section className='product-form-info' >
@@ -78,7 +89,7 @@ const CreateProduct = () => {
           <textarea name='description' rows={10} value={inputs.description} onChange={handleChange} required></textarea>
         </label>
         <label>
-          Price:
+          Price(kr):
           <br />
           <input type='text' name='price' value={inputs.price} onChange={handleChange} required></input>
         </label>
@@ -89,8 +100,9 @@ const CreateProduct = () => {
         </label>
         <button type="submit">Create</button>
       </section>
-
     </form>
+    </>
+    
 
   )
 }

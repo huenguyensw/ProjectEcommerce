@@ -1,9 +1,13 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 const UpdateProduct = () => {
   // Set up state for the product
   const [product, setProduct] = useState({});
+  const [file, setFile] = useState({});
+  const {setIsDisplayCart} = useOutletContext();
 
   // Get the navigate function from react-router
   const navigate = useNavigate();
@@ -11,8 +15,9 @@ const UpdateProduct = () => {
   // Get the id parameter from the URL using useParams from react-router
   const { id } = useParams();
 
-  const URL = 'https://db.up.railway.app'
+  const URL = 'https://db.up.railway.app/'
   const [src, setSrc] = useState({})
+
 
   // Use useEffect to fetch the product on mount
   useEffect(() => {
@@ -21,14 +26,17 @@ const UpdateProduct = () => {
 
   console.log(product.image)
 
+  //hide Cart icon
+  setIsDisplayCart(false);
+
   // Function to fetch the product by id from the API
   const fetchProduct = async () => {
     try {
-      const response = await fetch("https://db.up.railway.app/products/" + id);
+      const response = await fetch(URL + 'products/' + id);
       const data = await response.json();
       setProduct(data);
       console.log(data);
-      setSrc(`${URL}/uploads/${encodeURI(data.image)}`)
+      setSrc(`${URL}uploads/${encodeURI(data.image)}`);
     } catch (error) {
       console.log(error);
     }
@@ -46,39 +54,38 @@ const UpdateProduct = () => {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await fetch("https://db.up.railway.app/products/" + id, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          image: product.image,
-          title: product.title,
-          price: product.price,
-          description: product.description,
-          quantityOfProducts: product.quantityOfProducts
-        }),
-      });
+    
+    var formData = new FormData();
+    formData.append('productImage', file);
+    formData.append('title', product.title);
+    formData.append('description', product.description);
+    formData.append('price', product.price);
+    formData.append('quantity', product.quantity);
 
-      // Navigate to the manage-products page after successful submission
-      navigate("/admin/manage-products");
-    } catch (error) {
-      console.log(error);
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
     }
+    const res = await axios.patch(URL+'products/'+id,formData,config);
+    navigate("/admin/manage-products");
+    console.log(res);
+    console.log(formData)
   };
 
   // Function to handle uploading files
   const handleFiles = (event) => {
-    const file = event.target.files[0];
+    setFile(event.target.files[0])
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(event.target.files[0]);
     reader.onload = () => {
       setProduct({
         ...product,
         image: reader.result,
       });
+      setSrc(reader.result)
     };
+    console.log(event.target.files[0])
   };
 
   // Render the component
@@ -88,11 +95,13 @@ const UpdateProduct = () => {
 
       <form onSubmit={handleSubmit}>
         {/* Render the product fields in the input elements */}
-        {product.image==''||product.image==null?'':<img src={src} width={250} height={250}></img>}
-        {/* <label>
+        {product.image==''||product.image==null
+        ? ''
+        : <img src={src} width={250} height={250}></img>}
+        <label>
           Upload Image:
           <input type="file" name='productImage' onChange={handleFiles} />
-        </label> */}
+        </label>
         <br />
         <label>
           Title:
