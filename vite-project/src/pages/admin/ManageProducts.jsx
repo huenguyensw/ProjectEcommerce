@@ -7,6 +7,7 @@ import styled from 'styled-components'
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
+  const {setIsDisplayCart} = useOutletContext();
 
   useEffect(() => {
     fetchProducts();
@@ -30,6 +31,9 @@ const ManageProducts = () => {
       console.error(`Error, colud not delete this product with ID ${productId}: ${error}`);
     }
   };
+
+  //hide Cart icon
+  setIsDisplayCart(false);
   return (
     <Wrapper>
       <HeaderSection>
