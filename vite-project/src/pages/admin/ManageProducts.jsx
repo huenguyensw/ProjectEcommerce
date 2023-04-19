@@ -7,6 +7,7 @@ import styled from 'styled-components'
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
+  const {setIsDisplayCart} = useOutletContext();
 
   useEffect(() => {
     fetchProducts();
@@ -32,6 +33,9 @@ const ManageProducts = () => {
     
     setIsDisplayCart(false);
   };
+
+  //hide Cart icon
+  setIsDisplayCart(false);
   return (
     <Wrapper>
       <HeaderSection>
