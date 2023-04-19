@@ -29,6 +29,8 @@ const ManageProducts = () => {
     } catch (error) {
       console.error(`Error, colud not delete this product with ID ${productId}: ${error}`);
     }
+    
+    setIsDisplayCart(false);
   };
   return (
     <Wrapper>
