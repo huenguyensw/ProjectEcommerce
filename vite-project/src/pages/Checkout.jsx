@@ -83,7 +83,9 @@ const CheckoutPage = styled.div`
   'orders news'
   'shipping news';
   line-height: 1rem;
-  margin: 40px 50px;
+  padding: 40px 50px;
+  background-color: white;
+
 `
 
 const OrdersSection = styled.div`
