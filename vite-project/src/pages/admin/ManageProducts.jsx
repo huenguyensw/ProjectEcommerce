@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import usefetchAllRecords from '../usefetchAllRecords'
 import { Link } from 'react-router-dom'
@@ -6,32 +6,30 @@ import { useOutletContext } from 'react-router-dom'
 import styled from 'styled-components'
 
 const ManageProducts = () => {
-  const {data:products,isLoading, isError} = usefetchAllRecords('https://db.up.railway.app/products');
-  const {setIsDisplayCart} = useOutletContext();
+  const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('https://db.up.railway.app/products');
+      setProducts(response.data);
+    } catch (error) {
+      console.error(`Error fetching products: ${error}`);
+    }
+  };
 
   const handleDelete = async (productId) => {
     try {
-      // Make API call to delete product using productId
       await axios.delete(`https://db.up.railway.app/products/${productId}`);
-  
-      // Perform any additional actions after successful deletion
-      console.log(`Product with ID ${productId} deleted successfully.`);
+      setProducts(products.filter(product => product._id !== productId));
+      console.log(`Product with ID ${productId} has been deleted.`);
     } catch (error) {
-      // Handle error if any
-      console.error(`Error deleting product with ID ${productId}: ${error}`);
+      console.error(`Error, colud not delete this product with ID ${productId}: ${error}`);
     }
   };
-  if(isLoading){
-    return <h1>Loading...</h1>
-  }
-  if(isError){
-    return <h1>{isError}</h1>
-  }
-
-  //hide Cart icon
-  setIsDisplayCart(false);
-  
   return (
     <Wrapper>
       <HeaderSection>
