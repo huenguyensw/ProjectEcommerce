@@ -19,6 +19,7 @@ const UpdateProduct = () => {
   const URL = 'https://db.up.railway.app/'
   const [src, setSrc] = useState({})
 
+
   // Use useEffect to fetch the product on mount
   useEffect(() => {
     fetchProduct();
@@ -36,7 +37,7 @@ const UpdateProduct = () => {
       const data = await response.json();
       setProduct(data);
       console.log(data);
-      setSrc(`${URL}uploads/${encodeURI(data.image)}`)
+      setSrc(`${URL}uploads/${encodeURI(data.image)}`);
     } catch (error) {
       console.log(error);
     }
@@ -85,6 +86,7 @@ const UpdateProduct = () => {
       });
       setSrc(reader.result)
     };
+    console.log(event.target.files[0])
   };
 
   // Render the component

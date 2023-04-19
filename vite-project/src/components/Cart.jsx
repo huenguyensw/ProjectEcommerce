@@ -60,7 +60,7 @@ const Cart = ({handleRemoveItem, popup}) => {
       <ul>
         {lineItems.map((order) =>
           <ShoppingItem key= {order.product._id}>
-            <img src={`${URL}/uploads/${order.product.image}`} width='20px' height='20px'></img>
+            <img src={`${URL}/uploads/${order.product.image}`} width='25px' height='25px'></img>
             <p>{order.product.title}</p>
 
             <ChangeQuantityBtn popup={popup}>
@@ -82,7 +82,7 @@ const Cart = ({handleRemoveItem, popup}) => {
       <p style={{ textAlign: 'center' }}><b>Total price: {totalPrice} kr</b></p>
       <ShoppingCartBtn popup={popup}>
         <ResetCartBtn onClick={handleResetCart}>Reset Cart</ResetCartBtn>
-        <Link to={'/checkout'} onClick={()=>setToggle(false)}>Proceed to Checkout</Link>
+        <ResetCartBtn><Link style={{textDecoration: 'none', color: 'unset'}} to={'/checkout'} onClick={()=>setToggle(false)}>Proceed to Checkout</Link></ResetCartBtn>
       </ShoppingCartBtn>
 
     </CartWrapper>
@@ -94,7 +94,8 @@ const CartWrapper = styled(motion.div)`
   top: ${props => props.popup ? '65px' : 'unset'};
   right: ${props => props.popup ? '24px' : 'unset'};
   width: ${props => props.popup ? '400px' : 'unset'};
-  border: 1px solid rgb(246, 230, 211);
+  border: 1px solid skyblue;
+  box-shadow: ${props => props.popup ? '0px 5px 20px' : 'unset'};
   background-color: ${props => props.popup ? 'white' : 'unset'};
   display: grid;
   flex-direction: column;
@@ -106,7 +107,7 @@ const CartWrapper = styled(motion.div)`
 
 const ShoppingItem = styled.li`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   column-gap: 10px;
   padding:0;
   align-items:center;
@@ -122,10 +123,11 @@ const ResetCartBtn = styled.button`
   font-size: 1rem;
   cursor: pointer;
   box-shadow: 0px 0px 1.5px;
-  padding: 3px;
+  padding: 7px;
   background-color: white;
   border-radius: 3px;
   border: none;
+  color: rgb(103, 163, 186);
 
   &:hover {
     background-color: rgb(103, 163, 186);

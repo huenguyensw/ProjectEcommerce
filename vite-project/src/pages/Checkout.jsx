@@ -114,7 +114,7 @@ const ShippingSection = styled.section`
   grid-area: shipping;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid rgb(246, 230, 211);
+  border: 1px solid skyblue;
   border-radius: 4px;
   grid-template-areas: 'First Last'
   'Email Password'
