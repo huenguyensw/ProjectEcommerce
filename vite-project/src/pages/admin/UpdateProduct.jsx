@@ -25,7 +25,7 @@ const UpdateProduct = () => {
     fetchProduct();
   }, []);
 
-  console.log(product.image)
+  console.log(product?.image)
 
   //hide Cart icon
   setIsDisplayCart(false);
@@ -37,7 +37,7 @@ const UpdateProduct = () => {
       const data = await response.json();
       setProduct(data);
       console.log(data);
-      setSrc(`${URL}uploads/${encodeURI(data.image)}`);
+      setSrc(`${URL}uploads/${encodeURI(data?.image)}`);
     } catch (error) {
       console.log(error);
     }
@@ -91,85 +91,133 @@ const UpdateProduct = () => {
 
   // Render the component
   return (
-    <UpdateWrapper>
-    <div id="page">
-      <h1>Update Products</h1>
+        <UpdateWrapper>
+  <div id="page">
+    <h1>Update Products</h1>
 
     <StyleInputs>
       <form onSubmit={handleSubmit}>
         {/* Render the product fields in the input elements */}
-        {product.image==''||product.image==null
-        ? ''
-        : <img src={src} width={250} height={250}></img>}
-        <label>
-          Upload Image:
-          <input type="file" name='productImage' onChange={handleFiles} />
-        </label>
-        <br/>
-        <label>
+        {product.image == '' || product.image == null ? (
+          ''
+        ) : (
+          <img src={src} width={250} height={250} />
+        )}
+        <Image>
+          <label>
+            Upload Image:
+            <input type="file" name="productImage" onChange={handleFiles} />
+          </label>
+        </Image>
+
+        <InputLabel>
           Title:
-          <br/>
-          <input type='text' name='title' value={product.title || ""} onChange={handleChange}></input>
-        </label>
-        <br />
-        <label>
+          <input type="text" name="title" value={product.title || ""} onChange={handleChange} />
+        </InputLabel>
+
+        <InputLabel>
           Price:
           <input type="text" name="price" value={product.price || ""} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
+        </InputLabel>
+
+        <InputLabel>
           Description:
           <textarea name="description" value={product.description || ""} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
+        </InputLabel>
+
+        <InputLabel>
           Quantity:
-          <br/>
-          <input type='text' name='quantity' value={product.quantity} onChange={handleChange}></input>
-        </label>
-        <br />
+          <input type="text" name="quantity" value={product.quantity} onChange={handleChange} />
+        </InputLabel>
+
         {/* Add a link to navigate back to the manage-products page */}
-        <Link to="/admin/manage-products">&#8592; Back</Link>
+        <Backlink>
+          <Link to="/admin/manage-products">&#8592; Back</Link>
+        </Backlink>
+
         {/* Add a button to submit the form */}
-        <button>Update</button>
+        <Button type="submit">Update</Button>
       </form>
       </StyleInputs>
-    </div>
-    </UpdateWrapper>
-  );
-};
+    
+  </div>
+</UpdateWrapper>
 
-const UpdateWrapper = styled.div`
-display: flex;
-flex-direction: column;
-width: 600px;
-height: 700px;
-border-radius:10px;
-padding: 10px;
-border: 1px solid white;
-background-color: white;
-align-items: center;
-text-align: center;
-margin: 10px;
-justify-content: space-between;
+      );
+    };
+    
+    const UpdateWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 60%;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    background-color: #f5f5f5;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    justify-content: space-between;
+  `;
+  const StyleInputs = styled.form`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 10px;
+  padding: 5px;
+  margin: 5px;
+  line-height: 1.5;
+  align-items: left;
+  text-align: left;
 `;
 
-const StyleInputs = styled.form`
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-row-gap: 20px;
-column-gap:20px;
-padding: 10px;
-margin: 5px 0;
-line-height: 2.5;
-`;
+  const InputLabel = styled.label`
+    display: block;
+    margin-bottom: 5px;
+    line-height: 1.5;
+    align-items: right;
+    padding: 5px;
 
-const Button = styled.button`
-font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
-`;
+    textarea[name="description"] {
+      padding:5px;
+      margin:5px;
+      align-items: center;
+    }
+  `;
+
+  const Button = styled.button`
+    font-size: 1em;
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid palevioletred;
+    border-radius: 5px;
+    color: white;
+    background-color: palevioletred;
+    align-items: center;
+  `;
+  
+  const Backlink = styled(Link)`
+    font-size: 1em;
+    margin-top: 20px;
+    padding: 5px;
+    color: palevioletred;
+    text-decoration: none;
+    align-items: center;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  `;
+  
+  const Image = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: center;
+  
+    input[type="file"] {
+      margin-top: 10px;
+    }
+  `;
+    
 export default UpdateProduct;
