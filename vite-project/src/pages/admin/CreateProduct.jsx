@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion'
 import { useOutletContext } from 'react-router-dom';
 import { ProductWrapper, StyleInputs, Image, InputLabel, Button } from '../../styling';
 

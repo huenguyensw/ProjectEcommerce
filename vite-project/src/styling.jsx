@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const ProductWrapper = styled.div`
     display: block;
@@ -9,7 +8,7 @@ export const ProductWrapper = styled.div`
     border-radius: 10px;
     padding: 30px 40px;
     border: 1px solid #e5e5e5;
-    background-color: #F2E5D9;
+    background-color: white;
     align-items: center;
     text-align: center;
     margin: auto;
@@ -66,18 +65,7 @@ export const Button = styled.button`
     align-items: center;
   `;
 
-// export const Backlink = styled(Link)`
-//     font-size: 1em;
-//     margin-top: 20px;
-//     padding: 5px;
-//     color: palevioletred;
-//     text-decoration: none;
-//     align-items: center;
-  
-//     &:hover {
-//       text-decoration: underline;
-//     }
-//   `;
+
 
 export const Image = styled.div`
     margin-bottom: 30px;
