@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
-import { ProductWrapper, StyleInputs, Image, InputLabel, Button } from '../../styling';
+import { ProductWrapper, StyleInputs, Image, InputLabel, Button, BackButton, ButtonWrapper } from '../../styling';
 
 
 
@@ -96,10 +96,10 @@ const CreateProduct = () => {
           <br />
           <input type='text' name='quantity' value={inputs.quantity} onChange={handleChange} required></input>
         </InputLabel>
-        <section>
-          <Link to="/admin/manage-products">&#8592; Back</Link>
+        <ButtonWrapper>
+          <BackButton to="/admin/manage-products">&#8592; Back</BackButton>
           <Button type="submit">Create</Button>
-        </section>
+        </ButtonWrapper>
       </StyleInputs>
     </ProductWrapper>
 
