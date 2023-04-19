@@ -43,17 +43,20 @@ const ManageProducts = () => {
         <CreateLink to='/admin/create-product'>Create new product</CreateLink>
       </HeaderSection>
       <ProductTable>
+        <thead>
           <TableRow>
             <TableHead>Title</TableHead>
             <TableHead>Price</TableHead>
             <TableHead>Quantity</TableHead>
             <TableHead>Actions</TableHead>
           </TableRow>
+          </thead>
+          <tbody>
           {products.length == 0
           ? <h1>No product is available!</h1>
           : products.map((product)=>{ return (
             <TableRow key={product._id}>
-              <TableData>{product.title}</TableData>
+              <TableData className='title'>{product.title}</TableData>
               <TableData>{product.price}</TableData>
               <TableData>{product.quantity}</TableData>
               <TableData>
@@ -62,6 +65,7 @@ const ManageProducts = () => {
               </TableData>
             </TableRow>
           )})}
+          </tbody>
       </ProductTable>
     </Wrapper>
   )
@@ -133,14 +137,31 @@ const TableHead = styled.th`
   text-align: center;`;
 
 const TableRow = styled.tr`
-border: 1.5px solid ${darkColor};
+  border: 1.5px solid ${darkColor};
   padding: 5px;
-  text-align: center;`;
+  text-align: center;
+
+  &:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  `;
 
 const TableData = styled.td`
-border: 1.5px solid ${darkColor};
+  border: 1.5px solid ${darkColor};
   padding: 5px;
-  text-align: center;`;
+  text-align: center;
+  width: 3%;
+  
+  &.title {
+    width: 20%;
+    white-space: no-wrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    padding-left: 20px;
+    position: relative;
+  }
+  `;
 
 const Wrapper = styled.div`
   background-color: white;

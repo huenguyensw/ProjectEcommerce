@@ -36,6 +36,7 @@ const BodyPage = styled.div`
   font-family: arial;
   min-height: 100vh;
   width: 100vw;
+  overflow-x: hidden;
   margin-left: -8px;
   margin-top: -8px;
   margin-bottom: -8px;
