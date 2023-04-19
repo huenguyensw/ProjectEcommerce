@@ -53,6 +53,7 @@ const Products = () => {
   const totalWidth = products.length*267;
   
   return (
+    <Wrapper>
     <ProductContainer totalWidth={totalWidth}>
       <ScrollToTop />
     {isLoading
@@ -67,6 +68,7 @@ const Products = () => {
       {(lineItems.length >0 && toggle === true) 
         && <Cart popup={true}  handleRemoveItem={handleRemoveItem} />}
     </ProductContainer>
+    </Wrapper>
   )
 }
 
@@ -97,6 +99,12 @@ const ProductContainer = styled.div`
     column-gap: 30px;
   }
 `;
+
+const Wrapper = styled.div`
+display: block;
+margin: auto;
+`;
+
 
 
 export default Products
