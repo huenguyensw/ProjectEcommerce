@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import usefetchAllRecords from '../usefetchAllRecords'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
 import { useOutletContext } from 'react-router-dom'
+import styled from 'styled-components'
 
 const ManageProducts = () => {
   const {data:products,isLoading, isError} = usefetchAllRecords('https://db.up.railway.app/products');
