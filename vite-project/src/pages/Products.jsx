@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import ProductItem from '../components/ProductItem';
 import usefetchAllRecords from './usefetchAllRecords'
 import { useOutletContext } from 'react-router-dom'
@@ -14,7 +14,8 @@ const Products = () => {
   const URL = 'https://db.up.railway.app'
   const { data: products, isLoading, isError } = usefetchAllRecords(`${URL}/products`)
   
-
+// if product existed then only increase amount of products and update total price
+// else  if product does not exist, add product to list LineItems, update total price as well.
   const handleClick = (product,amount) => {
     setToggle(true);
     let isExist = lineItems.some(element => element.product._id == product._id)
@@ -39,16 +40,18 @@ const Products = () => {
   },3000)
   }
 
+  //show cart on Products page
   setIsDisplayCart(true);
   
-
+// update list of items and total price.
   const handleRemoveItem = (item)=>{
     setLineItems(lineItems => lineItems.filter((i)=>i.product._id != item.product._id));
     setTotalPrice(totalPrice - item.product.price*item.quantity)
   }
 
+  //267 is width of product items. totalWidth is used to justify content in ProductContainer
   const totalWidth = products.length*267;
-  console.log(totalWidth);
+  
   return (
     <ProductContainer totalWidth={totalWidth}>
       <ScrollToTop />
@@ -79,7 +82,8 @@ const ProductList = styled.div`
   align-items: center;
   text-align: center;
 `;
-
+//display space-evenly if there is enough space for all items.
+//else displaying flex-start
 const ProductContainer = styled.div`
   display: flex;
   background-color: white;
