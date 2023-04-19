@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const ProductWrapper = styled.div`
     display: block;
@@ -56,14 +57,39 @@ export const InputLabel = styled.label`
   `;
 
 export const Button = styled.button`
-    font-size: 1em;
-    margin: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    color: black;
-    background-color: rgb(172, 226, 239);
-    align-items: center;
+  background-color: rgb(103, 163, 186);
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  font-size: 10pt;
+  border: 1px solid rgb(103, 163, 186);
+
+  &:hover {
+    background-color: rgb(123, 172, 191);
+  }
   `;
+
+export const BackButton = styled(Link)`
+background-color: white;
+padding: 10px;
+text-decoration: none;
+color: rgb(103, 163, 186);
+border-radius: 5px;
+font-size: 10pt;
+border: 1px solid rgb(103, 163, 186);
+
+&:hover {
+  background-color: rgb(224, 231, 234);
+}  
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 
 
 

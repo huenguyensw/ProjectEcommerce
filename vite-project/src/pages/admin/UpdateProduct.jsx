@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
-import { ProductWrapper, StyleInputs,Image,InputLabel,Button} from '../../styling';
+import { ProductWrapper, StyleInputs,Image,InputLabel,Button, BackButton, ButtonWrapper} from '../../styling';
 
 const UpdateProduct = () => {
   // Set up state for the product
@@ -164,13 +164,13 @@ const UpdateProduct = () => {
         </InputLabel>
 
         {/* Add a link to navigate back to the manage-products page */}
-        <section>
+        <ButtonWrapper>
           
-          <Link to="/admin/manage-products">&#8592; Back</Link>
+          <BackButton to="/admin/manage-products">&#8592; Back</BackButton>
           
           {/* Add a button to submit the form */}
           <Button type="submit">Update</Button>
-        </section>
+        </ButtonWrapper>
 
 
       </StyleInputs>
