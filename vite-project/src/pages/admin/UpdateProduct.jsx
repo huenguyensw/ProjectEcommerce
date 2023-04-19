@@ -34,15 +34,22 @@ const UpdateProduct = () => {
   const fetchProduct = async () => {
     try {
       const response = await fetch(URL + 'products/' + id);
+      if (!response.ok) {
+        throw new Error('Error fetching product. Please try again later.');
+      }
       const data = await response.json();
       setProduct(data);
       console.log(data);
       setSrc(`${URL}uploads/${encodeURI(data?.image)}`);
     } catch (error) {
       console.log(error);
+      // display an error message to the user
+      alert('Error fetching product. Please try again later.');
+      navigate("/admin/manage-products");
     }
   };
-
+  
+  
   // Function to handle changes in the form fields
   const handleChange = (e) => {
     e.preventDefault();
@@ -55,30 +62,46 @@ const UpdateProduct = () => {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     var formData = new FormData();
     formData.append('productImage', file);
     formData.append('title', product.title);
     formData.append('description', product.description);
     formData.append('price', product.price);
     formData.append('quantity', product.quantity);
-
+    
     const config = {
       headers: {
         "Content-Type": "multipart/form-data"
       }
     }
-    const res = await axios.patch(URL + 'products/' + id, formData, config);
-    navigate("/admin/manage-products");
-    console.log(res);
-    console.log(formData)
+    
+    try {
+      const res = await axios.patch(URL + 'products/' + id, formData, config);
+      if (res.status === 200) {
+        navigate("/admin/manage-products");
+      } else {
+        throw new Error('Error updating product. Please try again later.');
+      }
+      console.log(res);
+      console.log(formData)
+    } catch (error) {
+      console.log(error);
+      // display an error message to the user
+      alert('Error updating product. Please try again later.');
+    }
   };
-
+  
   // Function to handle uploading files
   const handleFiles = (event) => {
-    setFile(event.target.files[0])
+    if (!event.target.files || event.target.files.length === 0) {
+      // handle error
+      alert('Please select a file.');
+      return;
+    }
+    const file = event.target.files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
+    reader.readAsDataURL(file);
     reader.onload = () => {
       setProduct({
         ...product,
@@ -86,9 +109,22 @@ const UpdateProduct = () => {
       });
       setSrc(reader.result)
     };
-    console.log(event.target.files[0])
+    reader.onerror = () => {
+      // handle error
+      alert('Error reading file.');
+    };
+    if (file.size > 2 * 1024 * 1024) {
+      // handle error
+      alert('File size must be less than 2MB.');
+      return;
+    }
+    if (!['image/jpeg', 'image/png'].includes(file.type)) {
+      // handle error
+      alert('File type must be JPEG or PNG.');
+      return;
+    }
   };
-
+  
   // Render the component
   return (
 
