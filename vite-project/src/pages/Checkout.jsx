@@ -17,20 +17,20 @@ const Checkout = () => {
         <CheckoutPage>
             <OrdersSection>
                 <h3>Products</h3>
-                <LineBreak />
+                {/* <LineBreak /> */}
                 {lineItems.length > 0
                     ? <Cart handleRemoveItem={handleRemoveItem} />
                     : <h1>Shopping cart is empty, <Link to={"/"}>start shopping!</Link></h1>}
             </OrdersSection>
             <NewsSection>
                 <h3>Newsletter</h3>
-                <LineBreak />
+                {/* <LineBreak /> */}
                 <SecondInput type='text'></SecondInput>
                 <SubscribeBtn>Subscribe</SubscribeBtn>
             </NewsSection>
             <div>
                 <h3>Shipping address</h3>
-                <LineBreak />
+                {/* <LineBreak /> */}
                 <ShippingSection>
                 <FirstName >
                     First name
