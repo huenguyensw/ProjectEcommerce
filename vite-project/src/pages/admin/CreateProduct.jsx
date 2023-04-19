@@ -65,7 +65,7 @@ const CreateProduct = () => {
 
   return (
     <ProductWrapper>
-      <motion.h1 animate={{ x: 100 }} className='title-addProduct'>Create Product</motion.h1>
+      <h1>Create Product</h1>
       <StyleInputs onSubmit={handleSubmit}>
         {image == '' || image == null
           ? ""
