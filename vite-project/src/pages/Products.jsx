@@ -88,7 +88,7 @@ const ProductContainer = styled.div`
   background-color: white;
   flex-direction: row;
   flex-wrap: wrap;
-  row-gap: 10px;
+  row-gap: 30px;
   justify-content: space-evenly;
   column-gap:15px;
   padding: 20px;
