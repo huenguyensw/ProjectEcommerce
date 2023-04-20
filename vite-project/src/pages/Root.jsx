@@ -5,10 +5,10 @@ import { Outlet } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Root = () => {
-  const [lineItems, setLineItems] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0)
-  const [toggle, setToggle] = useState(false)
-  const [isDisplayCart, setIsDisplayCart] = useState(true);
+  const [lineItems, setLineItems] = useState([]); //list of products that are added to cart
+  const [totalPrice, setTotalPrice] = useState(0); 
+  const [toggle, setToggle] = useState(false); //show and hide shoppingcart popup when click 'Add to cart' button
+  const [isDisplayCart, setIsDisplayCart] = useState(true); // display/hide cart icon on Header
   
 
   const handleToggle = () => {
