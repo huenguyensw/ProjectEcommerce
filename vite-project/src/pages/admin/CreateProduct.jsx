@@ -9,7 +9,7 @@ import { ProductWrapper, StyleInputs, Image, InputLabel, Button, BackButton, But
 const CreateProduct = () => {
   const [file, setFile] = useState({})
   const [inputs, setInputs] = useState({})
-  const URL = 'https://db.up.railway.app/products'
+  const URL = 'https://database-ecommerce-production.up.railway.app/products'
   const navigate = useNavigate();
   const { setIsDisplayCart } = useOutletContext();
 
@@ -54,7 +54,7 @@ const CreateProduct = () => {
     const res = await axios.post(URL, formData, config);
 
 
-    navigate('/admin/manage-products')
+    //navigate('/admin/manage-products')
     console.log(res)
   }
 

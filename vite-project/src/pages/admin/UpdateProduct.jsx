@@ -16,7 +16,7 @@ const UpdateProduct = () => {
   // Get the id parameter from the URL using useParams from react-router
   const { id } = useParams();
 
-  const URL = 'https://db.up.railway.app/'
+  const URL = 'https://database-ecommerce-production.up.railway.app/'
   const [src, setSrc] = useState({})
 
 

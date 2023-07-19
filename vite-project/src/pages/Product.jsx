@@ -8,8 +8,8 @@ import Cart from '../components/Cart'
 const Product = () => {
   const Params = useParams();
   const intervalRef = useRef(null);
-  const URL = 'https://db.up.railway.app'
-  const { data: product, isLoading, isError } = usefetchOneRecord('https://db.up.railway.app/products/' + Params.id)
+  const URL = 'https://database-ecommerce-production.up.railway.app'
+  const { data: product, isLoading, isError } = usefetchOneRecord('https://database-ecommerce-production.up.railway.app/products/' + Params.id)
 
   const { lineItems, setLineItems, totalPrice, setTotalPrice, toggle, setToggle, setIsDisplayCart} = useOutletContext();
 
