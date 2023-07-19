@@ -11,7 +11,7 @@ import styled from 'styled-components';
 
 
 const Cart = ({handleRemoveItem, popup}) => {
-  const URL = 'https://db.up.railway.app'
+  const URL = 'https://database-ecommerce-production.up.railway.app'
   const {lineItems, setLineItems, totalPrice, setToggle, setTotalPrice,handleResetCart} = useOutletContext();
 
   

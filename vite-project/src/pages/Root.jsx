@@ -16,7 +16,8 @@ const Root = () => {
   }
 
   const handleResetCart = () =>{
-    setLineItems([])
+    setLineItems([]);
+    setTotalPrice(0);
   }
   
 

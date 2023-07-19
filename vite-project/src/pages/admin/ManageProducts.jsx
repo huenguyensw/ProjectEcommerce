@@ -14,7 +14,7 @@ const ManageProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('https://db.up.railway.app/products');
+      const response = await axios.get('https://database-ecommerce-production.up.railway.app/products');
       setProducts(response.data);
     } catch (error) {
       console.error(`Error fetching products: ${error}`);
@@ -23,7 +23,7 @@ const ManageProducts = () => {
 
   const handleDelete = async (productId) => {
     try {
-      await axios.delete(`https://db.up.railway.app/products/${productId}`);
+      await axios.delete(`https://database-ecommerce-production.up.railway.app/products/${productId}`);
       setProducts(products.filter(product => product._id !== productId));
       console.log(`Product with ID ${productId} has been deleted.`);
     } catch (error) {

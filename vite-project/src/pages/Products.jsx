@@ -11,7 +11,7 @@ import ScrollToTop from '../components/ScrollToTop';
 const Products = () => {
   const intervalRef = useRef(null);
   const {lineItems, setLineItems, totalPrice,setTotalPrice,toggle,setToggle, setIsDisplayCart} = useOutletContext();
-  const URL = 'https://db.up.railway.app'
+  const URL = 'https://database-ecommerce-production.up.railway.app'
   const { data: products, isLoading, isError } = usefetchAllRecords(`${URL}/products`)
   
 // if product existed then only increase amount of products and update total price
